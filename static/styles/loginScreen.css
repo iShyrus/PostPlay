@@ -1,0 +1,376 @@
+
+body {
+    background-color:#1d1d1d;
+    font-family: "Press Start 2P";
+    overflow-x: hidden;
+}
+.loginContainer{
+    position:absolute;
+    height:550px;
+    width:450px;
+    background:linear-gradient(0deg,black,rgb(44,44,43));
+    border-radius: 10px;
+    top:20%;
+    left:38.5%;
+    animation: fadeIn 0.5s ;
+}
+.loginContainer::before{
+    content:'';
+    position:absolute;
+    top:-2px;
+    left:-2px;
+    right:-2px;
+    bottom:-2px;
+    z-index:-2;
+    filter:blur(10px);
+    border-radius:10px;
+    animation: gradientTextAnimation 3s ease-in-out infinite, fadeIn 3.5s;
+}
+@keyframes gradientTextAnimation {
+    0%{background:black}
+    50%{background:white}
+    100%{background:black}
+  }
+.inputContainer{
+    height:35px;
+    width:275px;
+    border-radius:13px;
+    border:none;
+    font-family: "Open Sans";
+    font-size:12px;
+    display:none;
+    font-family: "Press Start 2P";
+}
+#inputUsername{
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+}
+#inputPassword{
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.inputNewContainer{
+    height:0px;
+    width:275px;
+    border-radius:13px;
+    border:none;
+    font-family: "Press Start 2P";
+    font-size:12px;
+    display:none;
+}
+#inputNewUsername{
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);  
+    font-size:0;
+  
+}
+#inputNewPassword{
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size:0;
+}
+#loginButton{
+    position: absolute;
+    top:56.3%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #adadad;
+    border:none;
+    height:45px;
+    width:150px;
+    /* border-radius:15px; */
+    cursor:pointer;
+    color:white;
+    font-size:14px;
+    display:none;
+    outline:none;
+    box-shadow:0 0 5px #adadad;
+    font-family: "Press Start 2P";
+
+}
+#loginButton:hover{
+    background-size:400%;
+    box-shadow:0 0 5px #adadad,0 0 25px #adadad;
+}
+#splitLine{
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width:320px;
+    height:2px;
+    background: rgb(185, 185, 185);
+    display:none;
+}
+#newText{
+    position: absolute;
+    top:65.7%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-style: italic;
+    color:white;
+    display:none;
+    font-size:10px;
+}
+#loginText{
+    position: absolute;
+    top:65.7%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-style: italic;
+    color:white;
+    font-size:0px;
+}
+#signUpButton{
+    position: absolute;
+    top:77.5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #adadad;
+    border:none;
+    height:45px;
+    width:150px;
+    /* border-radius:15px; */
+    cursor:pointer;
+    color:white;
+    font-size:14px;
+    display:none;
+    box-shadow:0 0 5px #adadad;
+    font-family: "Press Start 2P";
+
+}
+#signUpButton:hover{
+    background-size:400%;
+    box-shadow:0 0 5px rgb(161, 193, 193),0 0 25px #adadad;
+}
+#createButton{
+    position: absolute;
+    top:56.3%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #adadad;
+    border:none;
+    height:0px;
+    width:150px;
+    /* border-radius:15px; */
+    cursor:pointer;
+    color:white;
+    font-size:0px;
+    outline:none;
+    box-shadow:0 0 5px #adadad;
+    display:none;
+    font-family: "Press Start 2P";
+}
+#loginChangeButton{
+    position: absolute;
+    top:77.5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #adadad;
+    border:none;
+    height:0px;
+    width:150px;
+    /* border-radius:15px; */
+    cursor:pointer;
+    color:white;
+    font-size:0px;
+    box-shadow:0 0 5px #adadad;
+    display:none;
+    font-family: "Press Start 2P";
+}
+#movingCloud0{
+    position: absolute;
+    width: 100px;
+    z-index: 10;
+    left: 10%;
+    animation: moveCloud0 45s ease-in-out forwards;
+    animation-iteration-count: infinite;
+}
+#movingCloud1{
+    position: absolute;
+    width: 100px;
+    z-index: 10;
+    left: 10%;
+    animation: moveCloud0 55s ease-in-out forwards;
+    animation-iteration-count: infinite;
+}
+#movingCloud2{
+    position: absolute;
+    width: 100px;
+    z-index: 10;
+    left: 10%;
+    animation: moveCloud0 30s ease-in-out forwards;
+    animation-iteration-count: infinite;
+}
+#movingCloud3{
+    position: absolute;
+    width: 100px;
+    z-index: 10;
+    left: 10%;
+    animation: moveCloud0 35s ease-in-out forwards;
+    animation-iteration-count: infinite;
+}
+#movingCloud4{
+    position: absolute;
+    width: 100px;
+    z-index: 10;
+    left: 10%;
+    animation: moveCloud0 40s ease-in-out forwards;
+    animation-iteration-count: infinite;
+}
+@keyframes moveCloud0{
+    from {
+    left: -6%;
+}
+    to {
+    left: 102%;
+}
+}
+#movingCloud5{
+    position: absolute;
+    width: 100px;
+    z-index: 10;
+    left: 10%;
+    animation: moveCloud1 65s ease-in-out forwards;
+    animation-iteration-count: infinite;
+}
+#movingCloud6{
+    position: absolute;
+    width: 100px;
+    z-index: 10;
+    left: 10%;
+    animation: moveCloud1 75s ease-in-out forwards;
+    animation-iteration-count: infinite;
+}
+#movingCloud7{
+    position: absolute;
+    width: 100px;
+    z-index: 10;
+    left: 10%;
+    animation: moveCloud1 85s ease-in-out forwards;
+    animation-iteration-count: infinite;
+}
+#movingCloud8{
+    position: absolute;
+    width: 100px;
+    z-index: 10;
+    left: 10%;
+    animation: moveCloud1 60s ease-in-out forwards;
+    animation-iteration-count: infinite;
+}
+#airplane{
+    position: absolute;
+    z-index: 10;
+    left: 10%;
+    animation: moveCloud1 50s ease-in-out forwards;
+    animation-iteration-count: infinite;
+}
+#airplane1{
+    position: absolute;
+    z-index: 10;
+    left: 10%;
+    animation: moveCloud1 40s ease-in-out forwards;
+    animation-iteration-count: infinite;
+}
+@keyframes moveCloud1{
+    from {
+    left: -12%;
+}
+    to {
+    left: 102%;
+}
+}
+#building1{
+    position:fixed; 
+    top:98%;
+    transform: translate(-30%, -80%);
+    display:none;
+}
+#building2{
+    position:fixed; 
+    top:98%;
+    transform: translate(71%, -80%);
+    display:none;
+
+}
+#building3{
+    position:fixed; 
+    top:98%;
+    transform: translate(158%, -80%);
+    display:none;
+
+}
+#building4{
+    position:fixed; 
+    top:98%;
+    transform: translate(270%, -80%);
+    display:none;
+
+}
+
+#building5{
+    position:fixed; 
+    top:98%;
+    transform: translate(350%, -80%);
+    display:none;
+
+}
+#building6{
+    position:fixed; 
+    top:98%;
+    transform: translate(471%, -80%);
+    display:none;
+
+}
+#websiteNameBack{
+    position: absolute;
+    top: 10%;
+    left: 49.7%;
+    transform: translate(-50%, -50%);
+    font-size:50px;
+    background: linear-gradient(to right, #e7464d, #cd4877, #a055a3, #5f44da, #7AD7F0,#e7464d );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientTextAnimation2 3s ease-in-out infinite;
+    display:none
+}
+@keyframes gradientTextAnimation2 {
+    0%{background-position:0 50%;}
+    50%{background-position:200% 50%;}
+    100%{background-position: 0 50%;}
+  }
+#websiteNameFront{
+    position: absolute;
+    top: 10%;
+    left: 50.6%;
+    transform: translate(-50%, -50%);
+    font-size:50px;
+    color:white;
+    display:none
+
+}
+#text{
+    position: absolute;
+    top: 94%;
+    left: 61%;
+    transform: translate(-50%, -50%);
+    color:#5d5d5d;
+    font-size:15px;
+    width:400px;
+    background: linear-gradient(to right, #e7464d, #cd4877, #a055a3, #5f44da, #7AD7F0,#e7464d );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientTextAnimation2 3s ease-in-out infinite;
+    display:none;
+}

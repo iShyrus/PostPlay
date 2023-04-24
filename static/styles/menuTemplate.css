@@ -1,0 +1,64 @@
+body {
+    background-color:#1d1d1d;
+    font-family:  "Press Start 2P";
+    overflow-x: hidden;
+}
+#menuContainer{
+    position: fixed;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width:385px;
+    height:160px;
+    background-color: white;
+    border-radius: 10px;
+    animation: fadeIn 2s;
+
+}
+#backgroundContainer{
+    position: fixed;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width:395px;
+    height:167px;
+    background-image:linear-gradient(to right, #e7464d, #cd4877, #a055a3, #5f44da );
+    border-radius: 10px;
+    animation: fadeIn 2s;
+}
+#homeButton{
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    transform: translate(50%, 40%);
+    height:45px; 
+    width:45px;
+    cursor:pointer; 
+    border:none; 
+    background:white;
+    
+}
+#friendsButton{
+    position: fixed;
+    top: 3%;
+    left: 74.5%;
+    transform: translate(50%, 40%);
+    height:40px; 
+    width:40px;
+    cursor:pointer; 
+    border:none; 
+    background:white;
+}
+#imageProfile{
+    position: fixed;
+    top: -7%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width:75px;
+    height:75px;
+    background: white;
+    border-radius:100px;
+    border-style: solid;
+    border-color: #1d1d1d;
+
+}
