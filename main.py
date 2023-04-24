@@ -12,6 +12,11 @@ class usernameInformation(db.Model):
     password = db.Column("password", db.String)
     status = db.Column("status", db.String)
 
+    def __init__(self, username, password, status):
+        self.username = username
+        self.password = password
+        self.status = status
+
 @app.route("/", methods = ['POST',"GET"])
 def index():
     if request.method == "POST":
@@ -19,11 +24,15 @@ def index():
         usernamePassword = request.form["inputPassword"]
         newUsernameLogin = request.form["inputNewUsername"]
         newUsernamePassword = request.form["inputNewPassword"]
-
-        if usernameLogin != "":
-            return redirect(url_for('dashboard', username=request.form["inputUsername"]))
+        found_user = usernameInformation.query.filter_by(username=usernameLogin).first()
+        password =  found_user.status
         
+        if usernameLogin != "" and found_user.password == usernamePassword:
+            return redirect(url_for('dashboard', username=request.form["inputUsername"]))
         elif newUsernameLogin!= "":
+            usr = usernameInformation(newUsernameLogin,newUsernamePassword,"member")
+            db.session.add(usr)
+            db.session.commit()
             return render_template("loginScreen.html")
         
     return render_template("loginScreen.html")
