@@ -14,15 +14,49 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Press+Start+2P">
 
 
+
+
+
+
+
+
+
+
+
+
+
   <body>
     <main>
       <div id ="postingContainer" style = "display:none;">
+        <div id = "userPostingBox">
+
+          <form method="POST" enctype="multipart/form-data" id = "fileInput">
+              <input id = "userPostingText" name = "descriptionText" placeholder="What have you played?">
+              <label for="file-input">
+                <img id ="fileUploadImage"src="https://icons.iconarchive.com/icons/dtafalonso/android-lollipop/128/Downloads-icon.png"/>
+              </label>
+              <input id="file-input" type="file" onchange="loadFile(event)" style="display:none;" name ="image" accept=".mp4, image/*"/>
+              <button id = "submitButton" type="submit">
+                <img id = "submitImg" src="https://cdn-icons-png.flaticon.com/512/1828/1828380.png">
+              </button>
+            </form>
+
+
+            <img id="previewImage" style="height:50%;">
+            <video id="previewVideo" controls></video>
+
+
+        </div>
       </div>
       {% include "menuTemplate.html" %}    
         <h1 id = "welcome1">Welcome back,</h1>
         <h1 id = "welcome2">Welcome back,</h1>
         <h1 id = "usernameWelcome1">{{username}}</h1>
         <h1 id = "usernameWelcome2">{{username}}</h1>
+
+
+
+
 
     </main>
   </body>

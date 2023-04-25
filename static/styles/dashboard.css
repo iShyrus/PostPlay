@@ -64,5 +64,64 @@ body{
     width:50%;
     background:#1d1d1d;
     border:solid;
-    border-color:rgb(158, 158, 158);
+    border-color:rgb(124, 124, 124);
+}
+#userPostingBox{
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width:85%;
+    height:75px;
+    background:rgb(237, 237, 237);
+    border-radius: 10px;
+}
+#userPostingText{
+    position: fixed;
+    top: 50%;
+    left: 45%;
+    transform: translate(-50%, -50%);
+    width:80%;
+    height:45px;
+    background:rgb(237, 237, 237);
+    border-radius: 30px;
+    font-family: "Press Start 2P";
+
+}
+#fileUploadImage{
+    height:40px; 
+    cursor:pointer;
+    position: fixed;
+    top: 50%;
+    left: 88%;
+    transform: translate(-50%, -50%);
+}
+#previewImage{
+    height:50%;
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#submitButton{
+    height:50px;
+    cursor:pointer;
+    position: fixed;
+    top: 50%;
+    left: 95%;
+    transform: translate(-50%, -50%);
+    border:none;
+}
+#submitImg{
+    height:100%;
+}
+
+#previewVideo{
+    position: fixed;
+    top: 43%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width:640; 
+    height:360;
+    display:none;
 }

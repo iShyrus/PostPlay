@@ -1,10 +1,13 @@
 from flask import Flask, redirect, url_for, request, render_template, session, flash
 import json
 from flask_sqlalchemy import SQLAlchemy
+import os
+from flask_admin import Admin
+
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db.sqlite3"
-
+admin = Admin(app)
 db = SQLAlchemy(app)
 
 class usernameInformation(db.Model):
@@ -16,6 +19,22 @@ class usernameInformation(db.Model):
         self.username = username
         self.password = password
         self.status = status
+
+class posting(db.Model):
+    pathToPost = db.Column("pathToPost", db.String ,primary_key=True)
+    description = db.Column("description", db.String)
+    username = db.Column("username", db.String)
+    likes = db.Column("likes", db.String)
+    comments = db.Column("comments", db.String)
+
+    def __init__(self, pathToPost, description, username, likes, comments):
+        self.pathToPost = pathToPost
+        self.description = description
+        self.username = username
+        self.likes = likes
+        self.comments = comments
+
+
 
 @app.route("/", methods = ['POST',"GET"])
 def index():
@@ -39,11 +58,18 @@ def index():
 
 @app.route("/dashboard/<username>", methods = ['POST',"GET"])
 def dashboard(username):
-    print(username)
+    if request.method =="POST":
+        descriptionText = request.form['descriptionText']
+        file = request.files['image']
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], file.filename))
+        pathToPost = "static/images/"+file.filename
+
     return render_template("dashboard.html", username = username)
 
 with app.app_context():
     db.create_all()
 if __name__ == '__main__':
+    app.config['UPLOAD_FOLDER'] = 'static/images'
     app.secret_key = 'secretKeyS'
     app.run(debug=True)
+
