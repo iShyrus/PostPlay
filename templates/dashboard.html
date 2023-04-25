@@ -12,20 +12,15 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   <script src="{{url_for('static', filename='JavaScript/dashboard.js')}}"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Press+Start+2P">
-
-
-
-
-
-
-
-
-
-
-
-
-
+  
   <body>
+
+    <p id = "allPaths">{{allPaths}}</p>
+    <p id = "allDescriptions">{{allDescriptions}}</p>
+    <p id = "allUsernames">{{allUsernames}}</p>
+    <p id = "allLikes">{{allLikes}}</p>
+    <p id = "allComments">{{allComments}}</p>
+
     <main>
       <div id ="postingContainer" style = "display:none;">
         <div id = "userPostingBox">

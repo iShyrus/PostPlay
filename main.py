@@ -10,7 +10,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db.sqlite3"
 admin = Admin(app)
 db = SQLAlchemy(app)
 
-class usernameInformation(db.Model):
+class userInformation(db.Model):
     username = db.Column("username", db.String ,primary_key=True)
     password = db.Column("password", db.String)
     status = db.Column("status", db.String)
@@ -20,7 +20,7 @@ class usernameInformation(db.Model):
         self.password = password
         self.status = status
 
-class posting(db.Model):
+class userPosting(db.Model):
     pathToPost = db.Column("pathToPost", db.String ,primary_key=True)
     description = db.Column("description", db.String)
     username = db.Column("username", db.String)
@@ -43,13 +43,12 @@ def index():
         usernamePassword = request.form["inputPassword"]
         newUsernameLogin = request.form["inputNewUsername"]
         newUsernamePassword = request.form["inputNewPassword"]
-        found_user = usernameInformation.query.filter_by(username=usernameLogin).first()
-        password =  found_user.status
+        found_user = userInformation.query.filter_by(username=usernameLogin).first()
         
         if usernameLogin != "" and found_user.password == usernamePassword:
             return redirect(url_for('dashboard', username=request.form["inputUsername"]))
         elif newUsernameLogin!= "":
-            usr = usernameInformation(newUsernameLogin,newUsernamePassword,"member")
+            usr = userInformation(newUsernameLogin,newUsernamePassword,"member")
             db.session.add(usr)
             db.session.commit()
             return render_template("loginScreen.html")
@@ -63,8 +62,17 @@ def dashboard(username):
         file = request.files['image']
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], file.filename))
         pathToPost = "static/images/"+file.filename
+        postSubmit = userPosting(pathToPost,descriptionText,username,"0","")
+        db.session.add(postSubmit)
+        db.session.commit()
 
-    return render_template("dashboard.html", username = username)
+    allPathToPostArr = [user.pathToPost for user in userPosting.query.all()]
+    allDescriptionArr = [user.description for user in userPosting.query.all()]
+    allUsernameArr = [user.username for user in userPosting.query.all()]
+    allLikesArr = [user.likes for user in userPosting.query.all()]
+    allCommentsArr = [user.comments for user in userPosting.query.all()]
+
+    return render_template("dashboard.html", username = username, allPaths = allPathToPostArr, allDescriptions = allDescriptionArr, allUsernames = allUsernameArr, allLikes = allLikesArr, allComments = allCommentsArr)
 
 with app.app_context():
     db.create_all()

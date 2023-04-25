@@ -115,7 +115,6 @@ body{
 #submitImg{
     height:100%;
 }
-
 #previewVideo{
     position: fixed;
     top: 43%;
@@ -124,4 +123,5 @@ body{
     width:640; 
     height:360;
     display:none;
+    border-radius:10px;
 }
