@@ -56,7 +56,7 @@ body{
 }
 
 #postingContainer{
-    position: fixed;
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -67,8 +67,8 @@ body{
     border-color:rgb(124, 124, 124);
 }
 #userPostingBox{
-    position: fixed;
-    top: 10%;
+    position: relative;
+    top: 5%;
     left: 50%;
     transform: translate(-50%, -50%);
     width:85%;
@@ -86,7 +86,7 @@ body{
     background:rgb(237, 237, 237);
     border-radius: 30px;
     font-family: "Press Start 2P";
-
+    font-size:10px;
 }
 #fileUploadImage{
     height:40px; 
@@ -94,7 +94,7 @@ body{
     position: fixed;
     top: 50%;
     left: 88%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);d
 }
 #previewImage{
     height:50%;
@@ -121,7 +121,52 @@ body{
     left: 50%;
     transform: translate(-50%, -50%);
     width:640; 
-    height:360;
+    height:80%;
     display:none;
     border-radius:10px;
+}
+.newContainer{
+    margin-bottom: 1em;
+    width:80%; 
+    height:75%;
+    background:rgb(237, 237, 237);
+    position: relative;
+    border-radius: 30px;
+    left: 50%;
+    top: 40%; 
+    transform: translate(-50%, -50%);
+}
+.newText{
+    position: relative;
+    left: 50%;
+    top: 28%; 
+    font-size:12px;
+}
+.newVideo{
+    position: absolute;
+    border-radius: 30px;
+    top: 10%; 
+    max-width: 100%;
+    height: auto;
+}
+.postingUsername{
+    position:absolute;
+    top:0%;
+    left:10%;
+    font-size:16px;
+}
+.userImgPosting{
+    position:relative;
+    top:1.2%;
+    left:2%;
+    height:58px;
+}
+
+.postingDate{
+    position:absolute;
+    top:4%;
+    left:10%;
+    font-size:8px;
+    font-style: italic;
+    color:#b4b4b4
 }

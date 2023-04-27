@@ -3,6 +3,7 @@ import json
 from flask_sqlalchemy import SQLAlchemy
 import os
 from flask_admin import Admin
+from datetime import date
 
 
 app = Flask(__name__)
@@ -20,19 +21,21 @@ class userInformation(db.Model):
         self.password = password
         self.status = status
 
-class userPosting(db.Model):
+class userPostingInfo(db.Model):
     pathToPost = db.Column("pathToPost", db.String ,primary_key=True)
     description = db.Column("description", db.String)
     username = db.Column("username", db.String)
     likes = db.Column("likes", db.String)
     comments = db.Column("comments", db.String)
+    datePosted = db.Column("datePosted", db.String)
 
-    def __init__(self, pathToPost, description, username, likes, comments):
+    def __init__(self, pathToPost, description, username, likes, comments,datePosted):
         self.pathToPost = pathToPost
         self.description = description
         self.username = username
         self.likes = likes
         self.comments = comments
+        self.datePosted = datePosted
 
 
 
@@ -62,17 +65,41 @@ def dashboard(username):
         file = request.files['image']
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], file.filename))
         pathToPost = "static/images/"+file.filename
-        postSubmit = userPosting(pathToPost,descriptionText,username,"0","")
+        today = date.today()
+        datePosted = today.strftime("%b %d, %Y")
+        postSubmit = userPostingInfo(pathToPost,descriptionText,username,"0","", datePosted)
         db.session.add(postSubmit)
         db.session.commit()
+        
 
-    allPathToPostArr = [user.pathToPost for user in userPosting.query.all()]
-    allDescriptionArr = [user.description for user in userPosting.query.all()]
-    allUsernameArr = [user.username for user in userPosting.query.all()]
-    allLikesArr = [user.likes for user in userPosting.query.all()]
-    allCommentsArr = [user.comments for user in userPosting.query.all()]
+    allPathToPostArr = [user.pathToPost for user in userPostingInfo.query.all()]
+    allDescriptionArr = [user.description for user in userPostingInfo.query.all()]
+    allUsernameArr = [user.username for user in userPostingInfo.query.all()]
+    allLikesArr = [user.likes for user in userPostingInfo.query.all()]
+    allCommentsArr = [user.comments for user in userPostingInfo.query.all()]
+    allDatesArr = [user.datePosted for user in userPostingInfo.query.all()]
 
-    return render_template("dashboard.html", username = username, allPaths = allPathToPostArr, allDescriptions = allDescriptionArr, allUsernames = allUsernameArr, allLikes = allLikesArr, allComments = allCommentsArr)
+
+
+    return render_template("dashboard.html", username = username, allPaths = allPathToPostArr, allDescriptions = allDescriptionArr, allUsernames = allUsernameArr, allLikes = allLikesArr, allComments = allCommentsArr, allDates = allDatesArr)
+
+
+
+
+@app.route("/clearAll", methods = ['POST',"GET"])
+def clearAll():
+    # Drop all tables in the database
+    db.drop_all()
+
+    # Create all tables again
+    db.create_all()
+
+    # Commit the changes to the database
+    db.session.commit()
+        
+    return render_template("clearAll.html")
+
+
 
 with app.app_context():
     db.create_all()
