@@ -10,16 +10,19 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
   />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script src="{{url_for('static', filename='JavaScript/menuTemplate.js')}}"></script>
+
 
 
   <body>
     <main>
+      
       <div id = "backgroundContainer"></div>
       <div id="menuContainer">
         <div id = "imageProfile">
           <img src="https://imgtr.ee/images/2023/04/19/0yUKz.png" style="height:75px"> 
         </div>
-        <button id ="homeButton">
+        <button id ="homeButton" onclick="homeButton()">
           <img src="https://imgtr.ee/images/2023/04/18/0npxI.png" style="height:100%;">
         </button>
         <button id = "friendsButton">        

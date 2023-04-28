@@ -24,6 +24,21 @@ body{
     font-size:55px;
     animation: 3s ease 0s normal forwards 1 fadeIn;
 }
+#usernameText{
+    position: fixed;
+    top: 95%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: 3s ease 0s normal forwards 1 fadeIn-2s;
+    font-size:15px;
+    background: linear-gradient(to right, #e7464d, #cd4877, #a055a3, #5f44da, #7AD7F0,#e7464d );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientTextAnimation 3s ease-in-out infinite;
+}
 @keyframes gradientTextAnimation {
     0%{background-position:0 50%;}
     50%{background-position:200% 50%;}
@@ -61,20 +76,24 @@ body{
     left: 50%;
     transform: translate(-50%, -50%);
     height:100%;
-    width:50%;
+    width:800px;
     background:#1d1d1d;
     border:solid;
     border-color:rgb(124, 124, 124);
+
 }
 #userPostingBox{
     position: relative;
-    top: 5%;
     left: 50%;
+    top: 5%; 
+    margin-bottom: 1em;
     transform: translate(-50%, -50%);
-    width:85%;
+    width:650px;
     height:75px;
     background:rgb(237, 237, 237);
     border-radius: 10px;
+    margin-bottom: 1em;
+
 }
 #userPostingText{
     position: fixed;
@@ -93,8 +112,8 @@ body{
     cursor:pointer;
     position: fixed;
     top: 50%;
-    left: 88%;
-    transform: translate(-50%, -50%);d
+    left: 88.2%;
+    transform: translate(-50%, -50%);
 }
 #previewImage{
     height:50%;
@@ -104,11 +123,11 @@ body{
     transform: translate(-50%, -50%);
 }
 #submitButton{
-    height:50px;
+    height:44px;
     cursor:pointer;
     position: fixed;
     top: 50%;
-    left: 95%;
+    left: 95.5%;
     transform: translate(-50%, -50%);
     border:none;
 }
@@ -127,46 +146,80 @@ body{
 }
 .newContainer{
     margin-bottom: 1em;
-    width:80%; 
-    height:75%;
+    width:650px; 
+    height:750px;
     background:rgb(237, 237, 237);
     position: relative;
     border-radius: 30px;
     left: 50%;
-    top: 40%; 
+    top: 50%; 
     transform: translate(-50%, -50%);
 }
-.newText{
+.newDescription{
     position: relative;
     left: 50%;
     top: 28%; 
-    font-size:12px;
+    font-size:11px;
 }
 .newVideo{
     position: absolute;
     border-radius: 30px;
     top: 10%; 
     max-width: 100%;
-    height: auto;
+    margin-bottom: 20px; /* Adjust the margin-bottom value as per your needs */
+
 }
 .postingUsername{
     position:absolute;
     top:0%;
-    left:10%;
+    left:11.7%;
     font-size:16px;
 }
 .userImgPosting{
     position:relative;
     top:1.2%;
     left:2%;
-    height:58px;
+    width:9%;
 }
-
 .postingDate{
     position:absolute;
     top:4%;
-    left:10%;
+    left:11.7%;
     font-size:8px;
     font-style: italic;
     color:#b4b4b4
+}
+.newDescriptionBox{
+    position: absolute;
+    top: 66.5%;
+    left: 2%;
+    transform: translate(-50%, -50%);
+    font-size: 18px; /* Adjust the font size as per your needs */
+}
+.likeButton{
+    position: absolute;
+    top: 59.5%;
+    left: 1.5%;
+    height:45px;
+    border:none;
+    cursor:pointer;
+}
+#postLikes{
+    position:relative;
+    top:50%
+}
+.sizeOfLikeButton{
+    height:100%;
+}
+.commentButton{
+    position: absolute;
+    top: 59.7%;
+    left: 10.2%;
+    height:38px;
+    cursor:pointer;
+    border:none;
+}
+.commentButtonImg{
+    height:100%;
+
 }

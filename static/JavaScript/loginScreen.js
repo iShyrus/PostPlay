@@ -20,7 +20,7 @@ $(document).ready(function(){
     //Random Starter Buildings
     // alert(screen.width)
     var img = new Image();
-    img.src =                             "https://imgtr.ee/images/2023/04/18/0MCrx.png"
+    img.src = "https://imgtr.ee/images/2023/04/18/0MCrx.png"
 
 
     // img.onload = function(){

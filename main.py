@@ -11,15 +11,17 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db.sqlite3"
 admin = Admin(app)
 db = SQLAlchemy(app)
 
-class userInformation(db.Model):
+class userInformations(db.Model):
     username = db.Column("username", db.String ,primary_key=True)
     password = db.Column("password", db.String)
     status = db.Column("status", db.String)
+    likedPosts = db.Column("likedPosts", db.String)
 
-    def __init__(self, username, password, status):
+    def __init__(self, username, password, status, likedPosts):
         self.username = username
         self.password = password
         self.status = status
+        self.likedPosts = likedPosts
 
 class userPostingInfo(db.Model):
     pathToPost = db.Column("pathToPost", db.String ,primary_key=True)
@@ -46,30 +48,47 @@ def index():
         usernamePassword = request.form["inputPassword"]
         newUsernameLogin = request.form["inputNewUsername"]
         newUsernamePassword = request.form["inputNewPassword"]
-        found_user = userInformation.query.filter_by(username=usernameLogin).first()
+        found_user = userInformations.query.filter_by(username=usernameLogin).first()
         
         if usernameLogin != "" and found_user.password == usernamePassword:
-            return redirect(url_for('dashboard', username=request.form["inputUsername"]))
+            session['username'] = username=request.form["inputUsername"]
+
+            return redirect(url_for('introDashboard'))
         elif newUsernameLogin!= "":
-            usr = userInformation(newUsernameLogin,newUsernamePassword,"member")
+            usr = userInformations(newUsernameLogin,newUsernamePassword,"member","")
             db.session.add(usr)
             db.session.commit()
             return render_template("loginScreen.html")
         
     return render_template("loginScreen.html")
 
+
+@app.route("/introDashboard", methods = ['POST',"GET"])
+def introDashboard():
+    username = session.get('username')
+    return render_template("introDashboard.html", username = username)
+
+
 @app.route("/dashboard/<username>", methods = ['POST',"GET"])
 def dashboard(username):
+    usernameQuery = userInformations.query.filter_by(username=username).first()
+
     if request.method =="POST":
-        descriptionText = request.form['descriptionText']
-        file = request.files['image']
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], file.filename))
-        pathToPost = "static/images/"+file.filename
-        today = date.today()
-        datePosted = today.strftime("%b %d, %Y")
-        postSubmit = userPostingInfo(pathToPost,descriptionText,username,"0","", datePosted)
-        db.session.add(postSubmit)
-        db.session.commit()
+        if "likesDuringThisPage" in request.form:
+            usernameQuery = userInformations.query.filter_by(username=username).first()
+            usernameQuery.likedPosts = request.form["likesDuringThisPage"]
+            db.session.commit()
+
+        else:
+            descriptionText = request.form['descriptionText']
+            file = request.files['image']
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], file.filename))
+            pathToPost = "static/images/"+file.filename
+            today = date.today()
+            datePosted = today.strftime("%b %d, %Y")
+            postSubmit = userPostingInfo(pathToPost,descriptionText,username,"0","", datePosted)
+            db.session.add(postSubmit)
+            db.session.commit()
         
 
     allPathToPostArr = [user.pathToPost for user in userPostingInfo.query.all()]
@@ -81,7 +100,7 @@ def dashboard(username):
 
 
 
-    return render_template("dashboard.html", username = username, allPaths = allPathToPostArr, allDescriptions = allDescriptionArr, allUsernames = allUsernameArr, allLikes = allLikesArr, allComments = allCommentsArr, allDates = allDatesArr)
+    return render_template("dashboard.html", username = username, allPaths = allPathToPostArr, allDescriptions = allDescriptionArr, allUsernames = allUsernameArr, allLikes = allLikesArr, allComments = allCommentsArr, allDates = allDatesArr, userLikes = usernameQuery.likedPosts)
 
 
 
