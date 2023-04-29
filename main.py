@@ -74,11 +74,25 @@ def dashboard(username):
     usernameQuery = userInformations.query.filter_by(username=username).first()
 
     if request.method =="POST":
+        print(request.form)
+        if "commentButton" in request.form:
+            for key, value in request.form.items():
+                if value != '' and "static" not in value and "likeButton" not in value:
+                    print(value)
+                    pathNum = "path" + str(key.replace("commentButton",""))
+                    path = request.form[pathNum]
+                    print(path)
+                    found_post = userPostingInfo.query.filter_by(pathToPost=path).first()
+                    found_post.comments += username+": "+ value +"-"
+                    db.session.commit()
+                    print(found_post.comments)
+                    # print(userPostingInfo.query.offset(int(key.replace("commentButton","")) - 1).first())
+                    # print(f"Variable: {key}, Value: {value}")
+
         if "likesDuringThisPage" in request.form:
             usernameQuery = userInformations.query.filter_by(username=username).first()
             usernameQuery.likedPosts = request.form["likesDuringThisPage"]
             db.session.commit()
-
         else:
             descriptionText = request.form['descriptionText']
             file = request.files['image']
@@ -89,6 +103,8 @@ def dashboard(username):
             postSubmit = userPostingInfo(pathToPost,descriptionText,username,"0","", datePosted)
             db.session.add(postSubmit)
             db.session.commit()
+
+
         
 
     allPathToPostArr = [user.pathToPost for user in userPostingInfo.query.all()]

@@ -60,14 +60,32 @@ $(document).ready(function(){
         
         const commentButton = document.createElement('button');
         commentButton.classList.add("commentButton");
-        commentButton.setAttribute("onclick", "commentButton(this.id)")
-        commentButton.setAttribute("id", "commentButton"+i)
-        commentButton.setAttribute("type", "button")
+        commentButton.setAttribute("onclick", "commentButton(this.id)");
+        commentButton.setAttribute("id", "commentButton"+i);
+        commentButton.setAttribute("type", "button");
+        commentButton.setAttribute("onclick", "commentButtonClicked(this.id)");
         commentButton.appendChild(commentButtonImg)
+
+
+        const commentInput = document.createElement('input');
+        commentInput.classList.add("commentInput");
+        commentInput.setAttribute("placeholder", "Comment Here");
+        commentInput.setAttribute("id", "commentButton"+i+"Input");
+        commentInput.setAttribute("name", "commentButton"+i);
+
+        const submitComment = document.createElement('button');
+        submitComment.setAttribute("id", "commentButton"+i+"Submit");
+        submitComment.setAttribute("name", "commentButton");
+        submitComment.setAttribute("onclick", "commentButtonSubmitForm()");
+        submitComment.classList.add("submitComment");
 
         const totalLikes = document.createElement('p');
         totalLikes.classList.add("totalLikesText")
         totalLikes.innerText = allLikes[i]
+
+        const path = document.createElement('input');
+        path.setAttribute("name", "path"+i);
+        path.value = allPaths[i]
 
         if(document.getElementById("userLikes").innerText.includes("likeButton"+i) === true){
             const greenLikeButton =document.createElement('img');
@@ -82,7 +100,7 @@ $(document).ready(function(){
             greyLikeButton.src = "https://imgtr.ee/images/2023/04/28/Jo033.png"
             greyLikeButton.classList.add("sizeOfLikeButton");
             greyLikeButton.setAttribute("id","likeButton"+i+"Img")
-            likeButton.appendChild(greyLikeButton)  
+            likeButton.appendChild(greyLikeButton) 
         }
 
 
@@ -108,12 +126,15 @@ $(document).ready(function(){
         }
 
         newDescriptionBox.appendChild(newDescription);
+        newContainer.appendChild(commentInput)
         newContainer.appendChild(likeButton); 
         newContainer.append(commentButton)
         newContainer.appendChild(postingDate); 
         newContainer.appendChild(userImgPosting); 
         newContainer.appendChild(newDescriptionBox); 
         newContainer.appendChild(postingUsername); 
+        newContainer.appendChild(submitComment);
+        newContainer.appendChild(path);
         form.appendChild(newContainer)
         postingContainer.appendChild(form);
     }
@@ -158,12 +179,9 @@ var loadFile = function(event) {
 
 
 function likeButton(clickedID){
-
-
     if(likedButtonArr.includes(clickedID) === true){
         var index = likedButtonArr.indexOf(clickedID);
         likedButtonArr.splice(index, 1);
-
         document.getElementById(clickedID+"Img").src = "https://imgtr.ee/images/2023/04/28/Jo033.png"
     }
     else{
@@ -171,11 +189,17 @@ function likeButton(clickedID){
         document.getElementById(clickedID+"Img").src = "https://imgtr.ee/images/2023/04/28/JoyVl.png"
 
     }
-    document.getElementById("likesDuringThisPage").value = likedButtonArr
-    
+    document.getElementById("likesDuringThisPage").value = likedButtonArr    
 }
 
+function commentButtonClicked(clickedID){
+    $("#"+clickedID+"Input").fadeIn(300);
+    $("#"+clickedID+"Input").animate({width:"300px"});
+}
 
+function commentButtonSubmitForm(){
+
+}
 
 // window.addEventListener('beforeunload', function() {
 //     // Access the form and submit it
@@ -185,9 +209,11 @@ function likeButton(clickedID){
 // });
 
 function likeSubmit(){
-    // var form = document.getElementById('postLikes');
-    // form.submit()
+
 }
+
+
+
 
 $(document).ready(function() {
     // Restore the scroll position
