@@ -190,11 +190,11 @@ body{
     color:#b4b4b4
 }
 .newDescriptionBox{
-    position: absolute;
-    top: 66.5%;
-    left: 2%;
-    transform: translate(-50%, -50%);
-    font-size: 18px; /* Adjust the font size as per your needs */
+    position: relative;
+    top: 430px;
+    left:-305px;
+    vertical-align: top;
+
 }
 .likeButton{
     position: absolute;

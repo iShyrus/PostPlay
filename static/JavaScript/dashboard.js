@@ -14,6 +14,14 @@ $(document).ready(function(){
     allLikes = JSON.parse(document.getElementById("allLikes").innerText.replaceAll("'",'"'));
     allComments = JSON.parse(document.getElementById("allComments").innerText.replaceAll("'",'"'));
     allDates = JSON.parse(document.getElementById("allDates").innerText.replaceAll("'",'"'));
+    allComments = JSON.parse(document.getElementById("allComments").innerText.replaceAll("'",'"'));
+    // for (let i = 0; i < allComments.length; i++) {
+    //     postsComments = allComments[i].split("-")
+    //     for(let j = 0; j < postsComments.length; j++){
+    //         alert(j)
+    //         alert(postsComments[j])
+    //     }
+    // }
 
     var form = document.createElement("form");
     form.setAttribute("method", "POST");
@@ -87,6 +95,11 @@ $(document).ready(function(){
         path.setAttribute("name", "path"+i);
         path.value = allPaths[i]
 
+
+
+
+
+
         if(document.getElementById("userLikes").innerText.includes("likeButton"+i) === true){
             const greenLikeButton =document.createElement('img');
             greenLikeButton.src = "https://imgtr.ee/images/2023/04/28/JoyVl.png"
@@ -126,6 +139,14 @@ $(document).ready(function(){
         }
 
         newDescriptionBox.appendChild(newDescription);
+        postsComments = allComments[i].split("-")
+        for(let j = 0; j < postsComments.length; j++){
+
+            const usersComments = document.createElement("p")
+            usersComments.classList.add("newDescription");
+            usersComments.textContent = postsComments[j]
+            newDescriptionBox.appendChild(usersComments)
+        }
         newContainer.appendChild(commentInput)
         newContainer.appendChild(likeButton); 
         newContainer.append(commentButton)
@@ -135,6 +156,8 @@ $(document).ready(function(){
         newContainer.appendChild(postingUsername); 
         newContainer.appendChild(submitComment);
         newContainer.appendChild(path);
+
+
         form.appendChild(newContainer)
         postingContainer.appendChild(form);
     }
