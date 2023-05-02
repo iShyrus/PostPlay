@@ -15,28 +15,27 @@ $(document).ready(function(){
     allComments = JSON.parse(document.getElementById("allComments").innerText.replaceAll("'",'"'));
     allDates = JSON.parse(document.getElementById("allDates").innerText.replaceAll("'",'"'));
     allComments = JSON.parse(document.getElementById("allComments").innerText.replaceAll("'",'"'));
-    // for (let i = 0; i < allComments.length; i++) {
-    //     postsComments = allComments[i].split("-")
-    //     for(let j = 0; j < postsComments.length; j++){
-    //         alert(j)
-    //         alert(postsComments[j])
-    //     }
-    // }
 
+    usernameText = document.getElementById("usernameText").innerText
     var form = document.createElement("form");
     form.setAttribute("method", "POST");
-    form.setAttribute("action", "/dashboard/Shyrus");
+    form.setAttribute("action", "/dashboard/"+usernameText);
     form.setAttribute("id", "postLikes");
 
+
     for (let i = 0; i < allPaths.length; i++) {
+        postsComments = allComments[i].split("-")
 
         var postingContainer = document.getElementById("postingContainer");
         var newContainer = document.createElement("div");
+        height = 550 + (postsComments.length*22)
+        newContainer.style.height = height+"px";
         newContainer.classList.add("newContainer");
 
         const newDescriptionBox = document.createElement('div');
         newDescriptionBox.classList.add("newDescriptionBox");
 
+        
         const newDescription = document.createElement('p');
         newDescription.classList.add("newDescription");
         newDescription.textContent = allUsernames[i]+": "+allDescriptions[i]
@@ -59,11 +58,13 @@ $(document).ready(function(){
         likeButton.setAttribute("onclick", "likeButton(this.id)")
         likeButton.setAttribute("id", "likeButton"+i)
         likeButton.setAttribute("type", "button")
+        likeButton.style.top = height-55
 
 
         const commentButtonImg = document.createElement('img');
         commentButtonImg.src = "https://imgtr.ee/images/2023/04/28/JqoL7.png"
         commentButtonImg.classList.add("commentButtonImg");
+        
 
         
         const commentButton = document.createElement('button');
@@ -73,19 +74,28 @@ $(document).ready(function(){
         commentButton.setAttribute("type", "button");
         commentButton.setAttribute("onclick", "commentButtonClicked(this.id)");
         commentButton.appendChild(commentButtonImg)
+        commentButton.style.top = height-53
 
 
         const commentInput = document.createElement('input');
         commentInput.classList.add("commentInput");
-        commentInput.setAttribute("placeholder", "Comment Here");
+        commentInput.setAttribute("placeholder", "Comment Here (47 Char Limit)");
         commentInput.setAttribute("id", "commentButton"+i+"Input");
         commentInput.setAttribute("name", "commentButton"+i);
+        commentInput.style.top = height-12
 
         const submitComment = document.createElement('button');
         submitComment.setAttribute("id", "commentButton"+i+"Submit");
         submitComment.setAttribute("name", "commentButton");
         submitComment.setAttribute("onclick", "commentButtonSubmitForm()");
+        submitComment.style.top = height-14
         submitComment.classList.add("submitComment");
+
+        const  submitCommentImg = document.createElement("img");
+        submitCommentImg.src = "https://cdn-icons-png.flaticon.com/512/1828/1828380.png";
+        submitCommentImg.classList.add("submitCommentImg")
+        submitComment.appendChild(submitCommentImg);
+        submitComment.style.display = "none"
 
         const totalLikes = document.createElement('p');
         totalLikes.classList.add("totalLikesText")
@@ -93,7 +103,9 @@ $(document).ready(function(){
 
         const path = document.createElement('input');
         path.setAttribute("name", "path"+i);
+        path.style.display = "none"
         path.value = allPaths[i]
+        
 
 
 
@@ -135,11 +147,12 @@ $(document).ready(function(){
         else{
             var newPicture = document.createElement("img");
             newPicture.src = "../"+allPaths[i]
+            newPicture.classList.add("newPicture")
             newContainer.appendChild(newPicture)
         }
 
         newDescriptionBox.appendChild(newDescription);
-        postsComments = allComments[i].split("-")
+
         for(let j = 0; j < postsComments.length; j++){
 
             const usersComments = document.createElement("p")
@@ -167,6 +180,7 @@ $(document).ready(function(){
     likesDuringThisPage.setAttribute("id", "likesDuringThisPage");
     likesDuringThisPage.setAttribute("name", "likesDuringThisPage");
     likesDuringThisPage.value = document.getElementById("userLikes").innerText;
+    likesDuringThisPage.style.display = "none"
     form.appendChild(likesDuringThisPage);
 
     userLikes = document.getElementById("userLikes").innerText
@@ -176,11 +190,12 @@ $(document).ready(function(){
 });
 
 var loadFile = function(event) {
-    $("#userPostingBox").animate({top:"25%"});
+
     $("#userPostingBox").animate({height:"460px"});
     $("#userPostingText").animate({top:"90%"});
     $("#fileUploadImage").animate({top:"90%"});
     $("#submitButton").animate({top:"90%"});
+
     const selectedFile = event.target.files[0];
     if(selectedFile.type.startsWith('image/')){
         $("#previewVideo").fadeOut(1000);
@@ -218,11 +233,10 @@ function likeButton(clickedID){
 function commentButtonClicked(clickedID){
     $("#"+clickedID+"Input").fadeIn(300);
     $("#"+clickedID+"Input").animate({width:"300px"});
+    $("#"+"commentButton"+clickedID.replace("commentButton", "")+"Submit").fadeIn(300)
 }
 
-function commentButtonSubmitForm(){
-
-}
+function commentButtonSubmitForm(){}
 
 // window.addEventListener('beforeunload', function() {
 //     // Access the form and submit it

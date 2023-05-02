@@ -51,7 +51,7 @@ def index():
         found_user = userInformations.query.filter_by(username=usernameLogin).first()
         
         if usernameLogin != "" and found_user.password == usernamePassword:
-            session['username'] = username=request.form["inputUsername"]
+            session['username'] = request.form["inputUsername"]
 
             return redirect(url_for('introDashboard'))
         elif newUsernameLogin!= "":
@@ -71,21 +71,20 @@ def introDashboard():
 
 @app.route("/dashboard/<username>", methods = ['POST',"GET"])
 def dashboard(username):
+    username = session.get('username')
+
     usernameQuery = userInformations.query.filter_by(username=username).first()
 
     if request.method =="POST":
-        print(request.form)
+        print(username)
         if "commentButton" in request.form:
             for key, value in request.form.items():
                 if value != '' and "static" not in value and "likeButton" not in value:
-                    print(value)
                     pathNum = "path" + str(key.replace("commentButton",""))
                     path = request.form[pathNum]
-                    print(path)
                     found_post = userPostingInfo.query.filter_by(pathToPost=path).first()
                     found_post.comments += username+": "+ value +"-"
                     db.session.commit()
-                    print(found_post.comments)
                     # print(userPostingInfo.query.offset(int(key.replace("commentButton","")) - 1).first())
                     # print(f"Variable: {key}, Value: {value}")
 
@@ -116,7 +115,7 @@ def dashboard(username):
 
 
 
-    return render_template("dashboard.html", username = username, allPaths = allPathToPostArr, allDescriptions = allDescriptionArr, allUsernames = allUsernameArr, allLikes = allLikesArr, allComments = allCommentsArr, allDates = allDatesArr, userLikes = usernameQuery.likedPosts)
+    return render_template("dashboard.html", username = session.get('username'), allPaths = allPathToPostArr, allDescriptions = allDescriptionArr, allUsernames = allUsernameArr, allLikes = allLikesArr, allComments = allCommentsArr, allDates = allDatesArr, userLikes = usernameQuery.likedPosts)
 
 
 
