@@ -1,5 +1,4 @@
 from flask import Flask, redirect, url_for, request, render_template, session, flash
-import json
 from flask_sqlalchemy import SQLAlchemy
 import os
 from flask_admin import Admin
