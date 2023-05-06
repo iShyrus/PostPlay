@@ -1,7 +1,33 @@
 var userLikes=""
 var likedButtonArr =""
+planeArr = ["https://imgtr.ee/images/2023/04/15/ypHd4.png",
+            "https://imgtr.ee/images/2023/04/15/ypj5s.png",
+            "https://imgtr.ee/images/2023/04/15/ypXc1.png",
+            "https://imgtr.ee/images/2023/04/15/yD7qX.png",
+            "https://imgtr.ee/images/2023/04/15/yDGKV.png"
+            ]
 
 $(document).ready(function(){
+
+
+    pixel = (Math.floor(Math.random() * (290 - 50 + 1)) + 50)
+    pixel1 = (Math.floor(Math.random() * (290 - 50 + 1)) + 50)
+    document.getElementById("airplane").src = planeArr[Math.floor(Math.random() * (4 - 0 + 1)) + 0]
+    document.getElementById("airplane").style.top= pixel+"px";
+    document.getElementById("airplane1").src = planeArr[Math.floor(Math.random() * (4 - 0 + 1)) + 0]
+    document.getElementById("airplane1").style.top= pixel1+"px";
+
+    //Random Airplanes
+    setInterval(()=> {
+        pixel = (Math.floor(Math.random() * (290 - 50 + 1)) + 50)
+        document.getElementById("airplane").style.top= pixel+"px";
+        document.getElementById("airplane").src = planeArr[Math.floor(Math.random() * (4 - 0 + 1)) + 0]
+    }, 50000)
+    setInterval(()=> {
+        pixel = (Math.floor(Math.random() * (290 - 50 + 1)) + 50)
+        document.getElementById("airplane1").style.top= pixel+"px";
+        document.getElementById("airplane1").src = planeArr[Math.floor(Math.random() * (4 - 0 + 1)) + 0]
+    }, 40000)
 
     setTimeout(function(){
         $("#postingContainer").fadeIn(1500)
@@ -15,6 +41,7 @@ $(document).ready(function(){
     allComments = JSON.parse(document.getElementById("allComments").innerText.replaceAll("'",'"'));
     allDates = JSON.parse(document.getElementById("allDates").innerText.replaceAll("'",'"'));
     allComments = JSON.parse(document.getElementById("allComments").innerText.replaceAll("'",'"'));
+    allLikes = JSON.parse(document.getElementById("allLikes").innerText.replaceAll("'",'"'));
 
     usernameText = document.getElementById("usernameText").innerText
     var form = document.createElement("form");
@@ -99,17 +126,18 @@ $(document).ready(function(){
 
         const totalLikes = document.createElement('p');
         totalLikes.classList.add("totalLikesText")
-        totalLikes.innerText = allLikes[i]
+        totalLikes.setAttribute("id", "totalLikes"+i);
+
+        totalLikes.innerText = "Likes: " + allLikes[i]
+        totalLikes.style.top = height-60
 
         const path = document.createElement('input');
         path.setAttribute("name", "path"+i);
         path.style.display = "none"
         path.value = allPaths[i]
-        
 
-
-
-
+        const numberOfLikes = document.createElement('p');
+    
 
 
         if(document.getElementById("userLikes").innerText.includes("likeButton"+i) === true){
@@ -154,12 +182,12 @@ $(document).ready(function(){
         newDescriptionBox.appendChild(newDescription);
 
         for(let j = 0; j < postsComments.length; j++){
-
             const usersComments = document.createElement("p")
             usersComments.classList.add("newDescription");
             usersComments.textContent = postsComments[j]
             newDescriptionBox.appendChild(usersComments)
         }
+        newContainer.appendChild(totalLikes)
         newContainer.appendChild(commentInput)
         newContainer.appendChild(likeButton); 
         newContainer.append(commentButton)
@@ -217,16 +245,23 @@ var loadFile = function(event) {
 
 
 function likeButton(clickedID){
+    totalLikes = clickedID.replace("likeButton","totalLikes")
+    
+
     if(likedButtonArr.includes(clickedID) === true){
         var index = likedButtonArr.indexOf(clickedID);
         likedButtonArr.splice(index, 1);
         document.getElementById(clickedID+"Img").src = "https://imgtr.ee/images/2023/04/28/Jo033.png"
+        totalLikes = clickedID.replace("likeButton","totalLikes")
+        allLikes[totalLikes.replace("totalLikes","")] -=1
     }
     else{
         likedButtonArr.push(clickedID);
         document.getElementById(clickedID+"Img").src = "https://imgtr.ee/images/2023/04/28/JoyVl.png"
-
+        parse = parseInt(allLikes[totalLikes.replace("totalLikes","")]) + 1
+        allLikes[totalLikes.replace("totalLikes","")] =parse
     }
+    document.getElementById(totalLikes).innerText = "Likes: " + allLikes[totalLikes.replace("totalLikes","")]
     document.getElementById("likesDuringThisPage").value = likedButtonArr    
 }
 
@@ -245,9 +280,6 @@ function commentButtonSubmitForm(){}
 //     form.submit();
 // });
 
-function likeSubmit(){
-
-}
 
 
 

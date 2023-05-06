@@ -50,11 +50,12 @@ def index():
         newUsernamePassword = request.form["inputNewPassword"]
         found_user = userInformations.query.filter_by(username=usernameLogin).first()
         
-        if usernameLogin != "" and found_user.password == usernamePassword:
-            session['username'] = request.form["inputUsername"]
+        if found_user:
+            if usernameLogin != "" and found_user.password == usernamePassword:
+                session['username'] = request.form["inputUsername"]
 
             return redirect(url_for('introDashboard'))
-        elif newUsernameLogin!= "":
+        if newUsernameLogin!= "":
             usr = userInformations(newUsernameLogin,newUsernamePassword,"member","")
             db.session.add(usr)
             db.session.commit()
@@ -72,11 +73,18 @@ def introDashboard():
 @app.route("/dashboard/<username>", methods = ['POST',"GET"])
 def dashboard(username):
     username = session.get('username')
-
     usernameQuery = userInformations.query.filter_by(username=username).first()
 
+
+    allPathToPostArr = [user.pathToPost for user in userPostingInfo.query.all()]
+    allDescriptionArr = [user.description for user in userPostingInfo.query.all()]
+    allUsernameArr = [user.username for user in userPostingInfo.query.all()]
+    allLikesArr = [user.likes for user in userPostingInfo.query.all()]
+    allCommentsArr = [user.comments for user in userPostingInfo.query.all()]
+    allDatesArr = [user.datePosted for user in userPostingInfo.query.all()]
+
+
     if request.method =="POST":
-        print(username)
         if "commentButton" in request.form:
             for key, value in request.form.items():
                 if value != '' and "static" not in value and "likeButton" not in value:
@@ -90,7 +98,20 @@ def dashboard(username):
 
         if "likesDuringThisPage" in request.form:
             usernameQuery = userInformations.query.filter_by(username=username).first()
+            previous = usernameQuery.likedPosts
             usernameQuery.likedPosts = request.form["likesDuringThisPage"]
+
+            for x in range(len(allDatesArr)):
+                pathNum = "path" + str(x)
+                path = request.form[pathNum]
+                found_post = userPostingInfo.query.filter_by(pathToPost=path).first()
+                if str(x) in previous and str(x) not in request.form["likesDuringThisPage"]:
+                    strToInt = int(found_post.likes) - 1
+                    found_post.likes = str(strToInt)
+                elif str(x) in request.form["likesDuringThisPage"] and str(x) not in previous:
+                    strToInt = int(found_post.likes) + 1
+                    found_post.likes = str(strToInt)            
+
             db.session.commit()
         else:
             descriptionText = request.form['descriptionText']
@@ -103,21 +124,13 @@ def dashboard(username):
             db.session.add(postSubmit)
             db.session.commit()
 
-
-        
-
     allPathToPostArr = [user.pathToPost for user in userPostingInfo.query.all()]
     allDescriptionArr = [user.description for user in userPostingInfo.query.all()]
     allUsernameArr = [user.username for user in userPostingInfo.query.all()]
     allLikesArr = [user.likes for user in userPostingInfo.query.all()]
     allCommentsArr = [user.comments for user in userPostingInfo.query.all()]
     allDatesArr = [user.datePosted for user in userPostingInfo.query.all()]
-
-
-
     return render_template("dashboard.html", username = session.get('username'), allPaths = allPathToPostArr, allDescriptions = allDescriptionArr, allUsernames = allUsernameArr, allLikes = allLikesArr, allComments = allCommentsArr, allDates = allDatesArr, userLikes = usernameQuery.likedPosts)
-
-
 
 
 @app.route("/clearAll", methods = ['POST',"GET"])

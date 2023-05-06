@@ -60,5 +60,14 @@ body {
     border-radius:100px;
     border-style: solid;
     border-color: #1d1d1d;
-
+}
+#logOutButton{
+    position: fixed;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width:20px;
+    height:20px;
+    border:none;
+    cursor:pointer;
 }

@@ -246,5 +246,135 @@ body{
     top:45%;
     left:50%;
     transform: translate(-50%, -50%);
+}
+.totalLikesText{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size:12px;
+}
+
+#movingCloud0{
+    position: absolute;
+    width: 100px;
+    z-index: 10;
+    left: 10%;
+    animation: moveCloud0 45s ease-in-out forwards;
+    animation-iteration-count: infinite;
+    z-index: -1;
 
 }
+#movingCloud1{
+    position: absolute;
+    width: 100px;
+    z-index: 10;
+    left: 10%;
+    animation: moveCloud0 55s ease-in-out forwards;
+    animation-iteration-count: infinite;
+    z-index: -1;
+
+}
+#movingCloud2{
+    position: absolute;
+    width: 100px;
+    z-index: 10;
+    left: 10%;
+    animation: moveCloud0 30s ease-in-out forwards;
+    animation-iteration-count: infinite;
+    z-index: -1;
+
+}
+#movingCloud3{
+    position: absolute;
+    width: 100px;
+    z-index: 10;
+    left: 10%;
+    animation: moveCloud0 35s ease-in-out forwards;
+    animation-iteration-count: infinite;
+    z-index: -1;
+
+}
+#movingCloud4{
+    position: absolute;
+    width: 100px;
+    z-index: 10;
+    left: 10%;
+    animation: moveCloud0 40s ease-in-out forwards;
+    animation-iteration-count: infinite;
+    z-index: -1;
+
+}
+@keyframes moveCloud0{
+    from {
+    left: -6%;
+}
+    to {
+    left: 102%;
+}
+}
+@keyframes moveCloud1{
+    from {
+    left: -12%;
+}
+    to {
+    left: 102%;
+}
+}
+#movingCloud5{
+    position: absolute;
+    width: 100px;
+    z-index: 10;
+    left: 10%;
+    animation: moveCloud1 65s ease-in-out forwards;
+    animation-iteration-count: infinite;
+    z-index: -1;
+
+}
+#movingCloud6{
+    position: absolute;
+    width: 100px;
+    z-index: 10;
+    left: 10%;
+    animation: moveCloud1 75s ease-in-out forwards;
+    animation-iteration-count: infinite;
+    z-index: -1;
+
+}
+#movingCloud7{
+    position: absolute;
+    width: 100px;
+    z-index: 10;
+    left: 10%;
+    animation: moveCloud1 85s ease-in-out forwards;
+    animation-iteration-count: infinite;
+    z-index: -1;
+
+}
+#movingCloud8{
+    position: absolute;
+    width: 100px;
+    z-index: 10;
+    left: 10%;
+    animation: moveCloud1 60s ease-in-out forwards;
+    animation-iteration-count: infinite;
+    z-index: -1;
+
+}
+#airplane{
+    position: absolute;
+    z-index: 10;
+    left: 10%;
+    animation: moveCloud1 50s ease-in-out forwards;
+    animation-iteration-count: infinite;
+    z-index: -1;
+
+}
+#airplane1{
+    position: absolute;
+    z-index: 10;
+    left: 10%;
+    animation: moveCloud1 40s ease-in-out forwards;
+    animation-iteration-count: infinite;
+    z-index: -1;
+}
+
