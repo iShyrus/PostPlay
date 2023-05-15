@@ -192,7 +192,7 @@ body{
 .likeButton{
     position: absolute;
     left: 1.5%;
-    height:45px;
+    height:43px;
     border:none;
     cursor:pointer;
 }

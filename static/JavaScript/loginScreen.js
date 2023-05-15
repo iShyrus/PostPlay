@@ -1,8 +1,8 @@
-planeArr = ["https://imgtr.ee/images/2023/04/15/ypHd4.png",
-            "https://imgtr.ee/images/2023/04/15/ypj5s.png",
-            "https://imgtr.ee/images/2023/04/15/ypXc1.png",
-            "https://imgtr.ee/images/2023/04/15/yD7qX.png",
-            "https://imgtr.ee/images/2023/04/15/yDGKV.png"
+planeArr = ["/static/staticImages/bluePlaneTransparent.png",
+            "/static/staticImages/redPlaneTransparent.png",
+            "/static/staticImages/yellowPlaneTransparent.png",
+            "/static/staticImages/purplePlaneTransparent.png",
+            "/static/staticImages/greenPlaneTransparent.png"
             ]
 
 

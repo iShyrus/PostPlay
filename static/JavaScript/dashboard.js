@@ -1,10 +1,10 @@
 var userLikes=""
 var likedButtonArr =""
-planeArr = ["https://imgtr.ee/images/2023/04/15/ypHd4.png",
-            "https://imgtr.ee/images/2023/04/15/ypj5s.png",
-            "https://imgtr.ee/images/2023/04/15/ypXc1.png",
-            "https://imgtr.ee/images/2023/04/15/yD7qX.png",
-            "https://imgtr.ee/images/2023/04/15/yDGKV.png"
+planeArr = ["/static/staticImages/bluePlaneTransparent.png",
+            "/static/staticImages/redPlaneTransparent.png",
+            "/static/staticImages/yellowPlaneTransparent.png",
+            "/static/staticImages/purplePlaneTransparent.png",
+            "/static/staticImages/greenPlaneTransparent.png"
             ]
 
 $(document).ready(function(){
@@ -89,7 +89,7 @@ $(document).ready(function(){
 
 
         const commentButtonImg = document.createElement('img');
-        commentButtonImg.src = "https://imgtr.ee/images/2023/04/28/JqoL7.png"
+        commentButtonImg.src = "/static/staticImages/commentButton.png"
         commentButtonImg.classList.add("commentButtonImg");
         
 
@@ -142,7 +142,7 @@ $(document).ready(function(){
 
         if(document.getElementById("userLikes").innerText.includes("likeButton"+i) === true){
             const greenLikeButton =document.createElement('img');
-            greenLikeButton.src = "https://imgtr.ee/images/2023/04/28/JoyVl.png"
+            greenLikeButton.src = "/static/staticImages/likedImage.png"
             greenLikeButton.classList.add("sizeOfLikeButton");
             greenLikeButton.setAttribute("id","likeButton"+i+"Img")
             likeButton.appendChild(greenLikeButton)
@@ -150,7 +150,7 @@ $(document).ready(function(){
         }
         else{
             const greyLikeButton =document.createElement('img');
-            greyLikeButton.src = "https://imgtr.ee/images/2023/04/28/Jo033.png"
+            greyLikeButton.src = "/static/staticImages/noLikedImage.png"
             greyLikeButton.classList.add("sizeOfLikeButton");
             greyLikeButton.setAttribute("id","likeButton"+i+"Img")
             likeButton.appendChild(greyLikeButton) 
@@ -251,13 +251,13 @@ function likeButton(clickedID){
     if(likedButtonArr.includes(clickedID) === true){
         var index = likedButtonArr.indexOf(clickedID);
         likedButtonArr.splice(index, 1);
-        document.getElementById(clickedID+"Img").src = "https://imgtr.ee/images/2023/04/28/Jo033.png"
+        document.getElementById(clickedID+"Img").src = "/static/staticImages/noLikedImage.png"
         totalLikes = clickedID.replace("likeButton","totalLikes")
         allLikes[totalLikes.replace("totalLikes","")] -=1
     }
     else{
         likedButtonArr.push(clickedID);
-        document.getElementById(clickedID+"Img").src = "https://imgtr.ee/images/2023/04/28/JoyVl.png"
+        document.getElementById(clickedID+"Img").src = "/static/staticImages/likedImage.png"
         parse = parseInt(allLikes[totalLikes.replace("totalLikes","")]) + 1
         allLikes[totalLikes.replace("totalLikes","")] =parse
     }
