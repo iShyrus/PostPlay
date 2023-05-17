@@ -78,7 +78,7 @@ $(document).ready(function(){
 
         const userImgPosting = document.createElement('img');
         userImgPosting.classList.add("userImgPosting");
-        userImgPosting.src = "https://imgtr.ee/images/2023/04/19/0yUKz.png"
+        userImgPosting.src = "/static/staticImages/userProfile.png"
 
         const likeButton = document.createElement('button');
         likeButton.classList.add("likeButton");

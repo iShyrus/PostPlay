@@ -54,12 +54,16 @@ body {
     top: -7%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width:75px;
-    height:75px;
+    width:73px;
+    height:73px;
     background: white;
     border-radius:100px;
     border-style: solid;
     border-color: #1d1d1d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
 }
 #logOutButton{
     position: fixed;
