@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Website</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/friendsPage.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Press+Start+2P">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="{{url_for('static', filename='JavaScript/friendsPage.js')}}"></script>
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+  </head>
+  <body>
+    <main>
+
+        <p style= "position:relative; left:10px;" id = "incomingRequests">{{incomingRequestsHTML}}</p>
+        <p style= "position:relative; left:10px;" id = "sentRequests">{{sentRequestsHTML}}</p>
+
+        <div id ="postingContainer">
+            <img id = "friendsImg" src ="{{ url_for('static', filename='staticImages/whiteFriends.png') }}" style="position:relative; height:40px; top:17px;">
+            <h1 class = "friendsMenu">Friends</h1>
+            <button class = "friendsButtons" id = "onlineButton">Online</button>
+            <button class = "friendsButtons" id = "pendingButton">Pending</button>
+            <form method="POST" action="{{ url_for('friends', username=username) }}">
+            <button type="submit" id ="sendFriendButton">
+                <img id = "sendFriendImage" src ="{{ url_for('static', filename='staticImages/sendFriendRequest.png') }}">
+            </button> 
+            <input id ="friendsInput" name = "sendingFriendRequest" placeholder="Add friend's username here." autocomplete="off">
+            </form>
+        </div>
+
+        {% include "menuTemplate.html" %}    
+        {% include "newMenuTemplate.html" %}    
+
+
+    </main>
+  </body>
+</html>

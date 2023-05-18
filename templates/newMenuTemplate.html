@@ -1,0 +1,38 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Website</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/newMenuTemplate.css') }}">
+    <link rel="import" href="newMenuTemplate.html" id="myTemplate">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script src="{{url_for('static', filename='JavaScript/newMenuTemplate.js')}}"></script>
+
+  
+  
+  <body>
+    <main>
+        <div id = newMenuContainer>
+            <button class="menuButton" onclick= "homeClick()">
+                <img src ="{{ url_for('static', filename='staticImages/whiteHome.png') }}" style="position:relative; height:25px; top:3px;">
+                Home
+            </button>
+            <button class="menuButton">
+                <img src ="{{ url_for('static', filename='staticImages/whiteFollowingPosts.png') }}" style="position:relative; height:25px; top:3px;">
+                Following
+            </button>
+            <button class="menuButton" onclick="friendsPage()">
+                <img src ="{{ url_for('static', filename='staticImages/whiteFriends.png') }}" style="position:relative; height:25px; top:3px;">
+                Friends
+            </button>
+            <button class="menuButton">
+                <img src ="{{ url_for('static', filename='staticImages/whiteMessage.png') }}" style="position:relative; height:25px; top:3px;">
+                Messages
+            </button>
+        </div>
+    </main>
+  </body>

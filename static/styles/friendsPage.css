@@ -1,0 +1,72 @@
+#postingContainer{
+    position: absolute;
+    top: -1%;
+    left: 50%;
+    transform: translate(-50%, -0%);
+    width:800px;
+    height:101%;
+    background:#1d1d1d;
+    border:solid;
+    border-color:rgb(124, 124, 124);
+    vertical-align: top;
+    
+}
+.friendsMenu{
+    font-weight: normal;
+    font-size: 15px;
+    color:white;
+    position:relative;
+    left:10%;
+    top:-2%;
+}
+#friendsImg{
+    position:relative;
+    left:2.7%;
+}
+.friendsButtons{
+    border:none;
+    cursor:pointer;
+    font-family:  "Press Start 2P";
+    background-color:#1d1d1d;
+    color:white;
+    position:relative;
+    left:29%;
+    top:-4.5%;
+}
+.friendsButtons:hover{
+    background-color: #4b4b4b;
+}
+#friendsInput{
+    border-radius: 10px;
+    height:30px;
+    width:720px;
+    background-color: #262626;
+    border:none;
+    font-family:  "Press Start 2P";
+    font-size:10px;
+    position:absolute;
+    left:4%;
+    color:white;
+    z-index:1;
+}
+#sendFriendButton{
+    background-color: #262626;
+    border:none;
+    cursor:pointer;
+    z-index: 2;
+    position:absolute;
+    height:30px;
+    left:88.5%;
+}
+#sendFriendImage{
+    height:100%;
+}
+.newPendingBox{
+    height:100px;
+    width:100px;
+    background-color:white;
+    display: inline-block;
+    margin-right: 10px; /* Optional: Add some space between the divs */
+    margin-top:10px;
+
+}

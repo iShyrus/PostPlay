@@ -15,12 +15,18 @@ class userInformations(db.Model):
     password = db.Column("password", db.String)
     status = db.Column("status", db.String)
     likedPosts = db.Column("likedPosts", db.String)
+    friends = db.Column("friends", db.String)
+    incomingfriendRequests = db.Column("incomingfriendRequests", db.String)
+    sentFriendRequests = db.Column("sentFriendRequests", db.String)
 
-    def __init__(self, username, password, status, likedPosts):
+    def __init__(self, username, password, status, likedPosts,friends, incomingfriendRequests, sentFriendRequests):
         self.username = username
         self.password = password
         self.status = status
         self.likedPosts = likedPosts
+        self.friends = friends
+        self.incomingfriendRequests = incomingfriendRequests
+        self.sentFriendRequests = sentFriendRequests
 
 class userPostingInfo(db.Model):
     pathToPost = db.Column("pathToPost", db.String ,primary_key=True)
@@ -55,7 +61,7 @@ def index():
 
             return redirect(url_for('introDashboard'))
         if newUsernameLogin!= "":
-            usr = userInformations(newUsernameLogin,newUsernamePassword,"member","")
+            usr = userInformations(newUsernameLogin,newUsernamePassword,"member","","","","")
             db.session.add(usr)
             db.session.commit()
             return render_template("loginScreen.html")
@@ -130,6 +136,26 @@ def dashboard(username):
     allCommentsArr = [user.comments for user in userPostingInfo.query.all()]
     allDatesArr = [user.datePosted for user in userPostingInfo.query.all()]
     return render_template("dashboard.html", username = session.get('username'), allPaths = allPathToPostArr, allDescriptions = allDescriptionArr, allUsernames = allUsernameArr, allLikes = allLikesArr, allComments = allCommentsArr, allDates = allDatesArr, userLikes = usernameQuery.likedPosts)
+
+
+@app.route("/dashboard/<username>/friends", methods=['POST', 'GET'])
+def friends(username):
+    usernameQuery = userInformations.query.filter_by(username=username).first()
+    incomingRequests = usernameQuery.incomingfriendRequests
+    sentRequests = usernameQuery.sentFriendRequests
+
+    if request.method =="POST":
+        allFriendRequests = usernameQuery.sentFriendRequests + request.form["sendingFriendRequest"] + "-"
+        usernameQuery.sentFriendRequests = allFriendRequests
+        userRecieving = userInformations.query.filter_by(username=request.form["sendingFriendRequest"]).first()
+        allIncoming = userRecieving.incomingfriendRequests + username +"-"
+        userRecieving.incomingfriendRequests = allIncoming
+        db.session.commit()
+        
+
+    return render_template("friendsPage.html", username=username, incomingRequestsHTML = incomingRequests, sentRequestsHTML = sentRequests)
+
+
 
 
 @app.route("/clearAll", methods = ['POST',"GET"])

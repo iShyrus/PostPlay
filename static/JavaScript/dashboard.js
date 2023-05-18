@@ -7,33 +7,9 @@ planeArr = ["/static/staticImages/bluePlaneTransparent.png",
             "/static/staticImages/greenPlaneTransparent.png"
             ]
 
-$(document).ready(function(){
 
 
-    pixel = (Math.floor(Math.random() * (290 - 50 + 1)) + 50)
-    pixel1 = (Math.floor(Math.random() * (290 - 50 + 1)) + 50)
-    document.getElementById("airplane").src = planeArr[Math.floor(Math.random() * (4 - 0 + 1)) + 0]
-    document.getElementById("airplane").style.top= pixel+"px";
-    document.getElementById("airplane1").src = planeArr[Math.floor(Math.random() * (4 - 0 + 1)) + 0]
-    document.getElementById("airplane1").style.top= pixel1+"px";
-
-    //Random Airplanes
-    setInterval(()=> {
-        pixel = (Math.floor(Math.random() * (290 - 50 + 1)) + 50)
-        document.getElementById("airplane").style.top= pixel+"px";
-        document.getElementById("airplane").src = planeArr[Math.floor(Math.random() * (4 - 0 + 1)) + 0]
-    }, 50000)
-    setInterval(()=> {
-        pixel = (Math.floor(Math.random() * (290 - 50 + 1)) + 50)
-        document.getElementById("airplane1").style.top= pixel+"px";
-        document.getElementById("airplane1").src = planeArr[Math.floor(Math.random() * (4 - 0 + 1)) + 0]
-    }, 40000)
-
-    setTimeout(function(){
-        $("#postingContainer").fadeIn(1500)
-    },300)
-
-
+function postingList(){
     allPaths = JSON.parse(document.getElementById("allPaths").innerText.replaceAll("'",'"'));
     allDescriptions = JSON.parse(document.getElementById("allDescriptions").innerText.replaceAll("'",'"'));
     allUsernames = JSON.parse(document.getElementById("allUsernames").innerText.replaceAll("'",'"'));
@@ -51,6 +27,7 @@ $(document).ready(function(){
 
 
     for (let i = 0; i < allPaths.length; i++) {
+        // if(allUsernames[i] == "perryyuen"){
         postsComments = allComments[i].split("-")
 
         var postingContainer = document.getElementById("postingContainer");
@@ -202,6 +179,7 @@ $(document).ready(function(){
         form.appendChild(newContainer)
         postingContainer.appendChild(form);
     }
+// }
 
     const likesDuringThisPage = document.createElement('input');
     likesDuringThisPage.textContent = "";
@@ -213,6 +191,39 @@ $(document).ready(function(){
 
     userLikes = document.getElementById("userLikes").innerText
     likedButtonArr = userLikes.split(",")
+}
+
+
+
+
+$(document).ready(function(){
+
+
+    pixel = (Math.floor(Math.random() * (290 - 50 + 1)) + 50)
+    pixel1 = (Math.floor(Math.random() * (290 - 50 + 1)) + 50)
+    document.getElementById("airplane").src = planeArr[Math.floor(Math.random() * (4 - 0 + 1)) + 0]
+    document.getElementById("airplane").style.top= pixel+"px";
+    document.getElementById("airplane1").src = planeArr[Math.floor(Math.random() * (4 - 0 + 1)) + 0]
+    document.getElementById("airplane1").style.top= pixel1+"px";
+
+    //Random Airplanes
+    setInterval(()=> {
+        pixel = (Math.floor(Math.random() * (290 - 50 + 1)) + 50)
+        document.getElementById("airplane").style.top= pixel+"px";
+        document.getElementById("airplane").src = planeArr[Math.floor(Math.random() * (4 - 0 + 1)) + 0]
+    }, 50000)
+    setInterval(()=> {
+        pixel = (Math.floor(Math.random() * (290 - 50 + 1)) + 50)
+        document.getElementById("airplane1").style.top= pixel+"px";
+        document.getElementById("airplane1").src = planeArr[Math.floor(Math.random() * (4 - 0 + 1)) + 0]
+    }, 40000)
+
+    setTimeout(function(){
+        $("#postingContainer").fadeIn(1500)
+    },300)
+
+
+    postingList()
 
 
 });

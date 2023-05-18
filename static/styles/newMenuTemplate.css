@@ -1,0 +1,28 @@
+#newMenuContainer {
+    display: flex;
+    flex-direction: column;
+    width:200px;
+    gap: 10px; 
+    border:solid;
+    border-color:rgb(124, 124, 124);
+    background-color:#1d1d1d;
+    
+    position:fixed;
+    top: 20%;
+    left: 0%;
+    transform: translate(0%, -50%);
+  }
+
+.menuButton{
+    border:none;
+    cursor:pointer;
+    height:35px;
+    width:200px;
+    font-family:  "Press Start 2P";
+    background-color:#1d1d1d;
+    color:white;
+    text-align: left;
+}
+.menuButton:hover{
+    background-color: #4b4b4b;
+}
