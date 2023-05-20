@@ -140,20 +140,60 @@ def dashboard(username):
 
 @app.route("/dashboard/<username>/friends", methods=['POST', 'GET'])
 def friends(username):
+
+
+    if request.method =="POST":
+        print(request.form)
+        if "sendingFriendRequest" in request.form:
+            usernameQuery = userInformations.query.filter_by(username=username).first()
+
+            allFriendRequests = usernameQuery.sentFriendRequests + request.form["sendingFriendRequest"] + "-"
+            usernameQuery.sentFriendRequests = allFriendRequests
+            userRecieving = userInformations.query.filter_by(username=request.form["sendingFriendRequest"]).first()
+            allIncoming = userRecieving.incomingfriendRequests + username +"-"
+            userRecieving.incomingfriendRequests = allIncoming
+            db.session.commit()
+
+        if "incomingFriendsList" in request.form:
+
+            requestStatus = request.form["incomingFriendsList"]
+            if "accepted" in request.form["incomingFriendsList"]:
+                user = requestStatus.replace("$accepted$", "")
+
+                userInfoSending = userInformations.query.filter_by(username=user).first()
+                sentFriendRequests = userInfoSending.sentFriendRequests
+                sentFriendRequests = sentFriendRequests.replace(username+"-","")
+                userInfoSending.sentFriendRequests = sentFriendRequests
+
+                userInfoRecieving = userInformations.query.filter_by(username=username).first()
+                incomingFriendRequests = userInfoRecieving.incomingfriendRequests
+                incomingFriendRequests = incomingFriendRequests.replace(user+"-","")
+                userInfoRecieving.incomingfriendRequests = incomingFriendRequests
+
+
+                userSendingFriends = userInfoSending.friends
+                userRecievingFriends = userInfoRecieving.friends
+
+                userSendingFriends += username+"-"
+                userRecievingFriends += user+"-"
+
+                userInfoSending.friends = userSendingFriends
+                userInfoRecieving.friends = userRecievingFriends
+
+                print(userInfoSending.friends)
+                print(userInfoRecieving.friends)
+
+                db.session.commit()
+
+            if "rejected" in request.form["incomingFriendsList"]:
+                print("rejected")        
+
     usernameQuery = userInformations.query.filter_by(username=username).first()
     incomingRequests = usernameQuery.incomingfriendRequests
     sentRequests = usernameQuery.sentFriendRequests
+    friendsList = usernameQuery.friends
 
-    if request.method =="POST":
-        allFriendRequests = usernameQuery.sentFriendRequests + request.form["sendingFriendRequest"] + "-"
-        usernameQuery.sentFriendRequests = allFriendRequests
-        userRecieving = userInformations.query.filter_by(username=request.form["sendingFriendRequest"]).first()
-        allIncoming = userRecieving.incomingfriendRequests + username +"-"
-        userRecieving.incomingfriendRequests = allIncoming
-        db.session.commit()
-        
-
-    return render_template("friendsPage.html", username=username, incomingRequestsHTML = incomingRequests, sentRequestsHTML = sentRequests)
+    return render_template("friendsPage.html", username=username, incomingRequestsHTML = incomingRequests, sentRequestsHTML = sentRequests, friendsListHTML = friendsList )
 
 
 
