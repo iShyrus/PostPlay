@@ -3,7 +3,7 @@
     left: 50%;
     bottom: -5;
     transform: translateX(-50%);
-    width: 700px;
+    width: 800px;
     height: 25px;
     background-color: #f4f4f4;
     border: 2px solid #808080;
@@ -12,7 +12,7 @@
 }
 #friendsMessagingButton{
     position:relative;
-    left:80.3%;
+    left:82.8%;
     border:none;
     cursor:pointer;  
     height: 28px;
@@ -27,7 +27,7 @@
 }
 #chatFriendsList{
     position: fixed;
-    left: 64.68%;
+    left: 1284px;
     bottom: -160;
     transform: translateX(-50%);
     width: 136px;
@@ -102,7 +102,7 @@
     background-color:white;
     font-family: "Press Start 2P";
     font-size:7px;
-    width:136px;
+    width:160px;
     top:-4px;
     border: 2px solid #808080;
 
