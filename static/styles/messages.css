@@ -1,0 +1,110 @@
+#messagingBox{
+    position: fixed;
+    left: 50%;
+    bottom: -5;
+    transform: translateX(-50%);
+    width: 700px;
+    height: 25px;
+    background-color: #f4f4f4;
+    border: 2px solid #808080;
+    z-index: 2;
+    
+}
+#friendsMessagingButton{
+    position:relative;
+    left:80.3%;
+    border:none;
+    cursor:pointer;  
+    height: 28px;
+    background-color: #f4f4f4;
+    border: 2px solid #808080;
+    /* border-radius: 10px;     */
+    width:140px;
+    font-family: "Press Start 2P";
+    font-size:8px;
+    top:-1px;
+    
+}
+#chatFriendsList{
+    position: fixed;
+    left: 64.68%;
+    bottom: -160;
+    transform: translateX(-50%);
+    width: 136px;
+    height: 150px;
+    background-color: #f4f4f4;
+    border: 2px solid #808080;
+    border-radius: 4px;
+    overflow:auto;
+    z-index: 1;
+
+}
+.friendBox{
+    font-size: 7px;
+    display: flex;
+    flex-direction: column;
+    height: 25px;
+    align-items: flex-start;
+    justify-content: center;
+    width: 131px;
+    border:1px solid #808080;
+    cursor:pointer;
+    font-family: "Press Start 2P";
+
+}
+.friendBox:hover{
+    background-color: #bcbcbc;
+    font-family: "Press Start 2P";
+
+}
+
+
+#chatFriendsList::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  #chatFriendsList::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+  }
+   
+  #chatFriendsList::-webkit-scrollbar-thumb {
+    background: grey; 
+    border-radius: 5px;
+  }
+
+#searchFriendsMessage{
+    width: 131px;
+    margin-bottom:5px;
+    font-family: "Press Start 2P";
+    font-size:7px;
+    height: 25px;
+}
+.friendMessagingBox{
+    position:relative;
+    bottom:50px;
+    display: flex;
+    flex-direction: column;
+    height: 25px;
+    align-items: flex-start;
+    justify-content: center;
+}
+.friendMessagingBox {
+    position: relative;
+    left:-157px;
+    bottom: 2px;
+    display: inline-block;
+    align-items: flex-start;
+    justify-content: center;
+    border:1px solid #808080;
+    cursor:pointer;
+    background-color:white;
+    font-family: "Press Start 2P";
+    font-size:7px;
+    width:136px;
+    top:-4px;
+    border: 2px solid #808080;
+
+  }
+  

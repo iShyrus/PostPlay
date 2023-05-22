@@ -39,6 +39,7 @@
     <img src="https://imgtr.ee/images/2023/04/15/ypj5s.png" id="airplane1" class = "backgroundImg" style ="position:fixed;height:65px; top:50px; left:0px;">
 
 
+    {% include "messages.html" %}    
 
 
     <main>
@@ -60,13 +61,10 @@
         </div>
       </div>
 
-      {% include "menuTemplate.html" %}    
-      <h1 id = "usernameText">{{username}}</h1>
+      <!-- {% include "menuTemplate.html" %}     -->
+      <h1 style = "display:none;" id = "usernameText">{{username}}</h1>
       {% include "newMenuTemplate.html" %}    
-
-
-
-
+      
 
 
     </main>

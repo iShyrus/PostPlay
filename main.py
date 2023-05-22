@@ -135,7 +135,9 @@ def dashboard(username):
     allLikesArr = [user.likes for user in userPostingInfo.query.all()]
     allCommentsArr = [user.comments for user in userPostingInfo.query.all()]
     allDatesArr = [user.datePosted for user in userPostingInfo.query.all()]
-    return render_template("dashboard.html", username = session.get('username'), allPaths = allPathToPostArr, allDescriptions = allDescriptionArr, allUsernames = allUsernameArr, allLikes = allLikesArr, allComments = allCommentsArr, allDates = allDatesArr, userLikes = usernameQuery.likedPosts)
+    friendsList = usernameQuery.friends
+
+    return render_template("dashboard.html", username = session.get('username'), allPaths = allPathToPostArr, allDescriptions = allDescriptionArr, allUsernames = allUsernameArr, allLikes = allLikesArr, allComments = allCommentsArr, allDates = allDatesArr, userLikes = usernameQuery.likedPosts, friendsListHTML = friendsList)
 
 
 @app.route("/dashboard/<username>/friends", methods=['POST', 'GET'])
