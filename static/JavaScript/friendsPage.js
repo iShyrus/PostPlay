@@ -1,8 +1,18 @@
 $(document).ready(function(){
 
-    incomingRequests = (document.getElementById("incomingRequests").innerText).split("-")
-    sentRequests = (document.getElementById("sentRequests").innerText).split("-")
+    incomingRequests = (document.getElementById("incomingRequests").innerText).split("-");
+    sentRequests = (document.getElementById("sentRequests").innerText).split("-");
+    friendsList = (document.getElementById("friendsList").innerText).split("-");
+    var postingContainer = document.getElementById("postingContainer");
 
+
+    if(incomingRequests!=""){
+        const pendingTitle = document.createElement('p');
+        pendingTitle.innerText = "Pending";
+        pendingTitle.classList.add("pendingTitle");   
+        postingContainer.appendChild(pendingTitle);
+
+    }
 
 
 
@@ -36,15 +46,45 @@ $(document).ready(function(){
         rejectButtonImage.classList.add("acceptButtonImage")
         rejectButton.appendChild(rejectButtonImage)
 
-
         newPendingBox.appendChild(rejectButton)
         newPendingBox.appendChild(acceptButton)
         newPendingBox.appendChild(incomingName)
-        var postingContainer = document.getElementById("postingContainer");
         postingContainer.appendChild(newPendingBox);
-
-
     }
+
+    const onlineTitle = document.createElement('p');
+    onlineTitle.innerText = "Online";
+    onlineTitle.classList.add("onlineTitle");
+    postingContainer.appendChild(onlineTitle);
+
+    for (let i = 0; i < friendsList.length-1; i++) {
+        
+        const newFriendsBox = document.createElement('div');
+        newFriendsBox.classList.add("newFriendsBox");
+        newFriendsBox.setAttribute("id", "incomingBox"+i);
+
+        const incomingName = document.createElement('p');
+        incomingName.classList.add("friendsName");
+        incomingName.innerText = friendsList[i];
+        newFriendsBox.appendChild(incomingName)
+
+        const messageButton = document.createElement("button")
+        messageButton.classList.add("messageButton")
+        messageButton.setAttribute("id","$message$"+friendsList[i])
+        messageButton.setAttribute("onclick", "messageButton(this.id)")
+        const messageButtonImage = document.createElement("img")
+        messageButtonImage.src = "/static/staticImages/whiteMessage.png"
+        messageButtonImage.classList.add("messageButtonImage")
+        messageButton.appendChild(messageButtonImage)
+
+        newFriendsBox.appendChild(messageButton)
+
+
+        postingContainer.appendChild(newFriendsBox)
+    }
+
+
+    
     
     var postingContainer = document.getElementById("postingContainer");
     const incomingFriendsList = document.createElement("input")
@@ -71,3 +111,6 @@ function acceptRejectButton(statusUsername){
     form.submit()
 }
 
+function messageButton(friendUsername){
+    alert(friendUsername)
+}
