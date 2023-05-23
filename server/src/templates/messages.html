@@ -23,11 +23,21 @@
                 <img style ="height:10px;" src = "{{ url_for('static', filename='staticImages/online.png') }}">
                 Chat
             </button>
+            <div id ="chatBox"class="chatBox">
+                <p id = "usernameTitle">Name</p>
+                <div class="lining"></div>
+                <input id = "messageInput">
+                <button id="submitMessage" onclick ="sendMessage()">Send</button>
+                <div id ="chatLogsBox"></div>
+            </div>
+
         </div>
 
         <div id="chatFriendsList">
             <input id = "searchFriendsMessage" placeholder="Search for Friends">
         </div>
+
+
   
   
     </main>

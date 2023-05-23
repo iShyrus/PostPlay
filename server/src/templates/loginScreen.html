@@ -1,0 +1,68 @@
+<!-- {% include "menuTemplate.html" %}     -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Website</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/loginScreen.css') }}">
+    <link rel="import" href="menuTemplate.html" id="myTemplate">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Press+Start+2P">
+
+  </head>
+  <body id = "webBody">
+    <main>
+      <img src="{{ url_for('static', filename='staticImages/moon.png') }}" id = "moon" style="height:70px;transform: rotate(90deg);display:none;">
+      <img src="{{ url_for('static', filename='staticImages/cloud0.png') }}" id="movingCloud0"style ="position:fixed;height:55px; top:100px; height:80px;">
+      <img src="{{ url_for('static', filename='staticImages/cloud1.png') }}" id="movingCloud1"style ="position:fixed;height:55px; top:200px; height:80px;">
+      <img src="{{ url_for('static', filename='staticImages/cloud2.png') }}" id="movingCloud2"style ="position:fixed;height:55px; top:300px; height:80px;">
+      <img src="{{ url_for('static', filename='staticImages/cloud3.png') }}" id="movingCloud3"style ="position:fixed;height:55px; top:150px; height:80px;">
+      <img src="{{ url_for('static', filename='staticImages/cloud0.png') }}" id="movingCloud4"style ="position:fixed;height:55px; top:250px; height:80px;">
+      <img src="{{ url_for('static', filename='staticImages/cloud1.png') }}" id="movingCloud5" style ="position:fixed;height:55px; top:150px; height:80px;">
+      <img src="{{ url_for('static', filename='staticImages/cloud2.png') }}" id="movingCloud6" style ="position:fixed;height:55px; top:250px; height:80px;">
+      <img src="{{ url_for('static', filename='staticImages/cloud3.png') }}" id="movingCloud7" style ="position:fixed;height:55px; top:200px; height:80px;">
+      <img src="{{ url_for('static', filename='staticImages/cloud0.png') }}" id="movingCloud8" style ="position:fixed;height:55px; top:50px; height:80px;">
+      <img src="https://imgtr.ee/images/2023/04/15/ypHd4.png" id="airplane" style ="position:fixed;height:65px; top:50px; left:0px;">
+      <img src="https://imgtr.ee/images/2023/04/15/ypj5s.png" id="airplane1" style ="position:fixed;height:65px; top:50px; left:0px;">
+      <img src="{{ url_for('static', filename='staticImages/city1Transparent.png') }}" id="building1" style = "position:fixed; height:145px;">
+      <img src="{{ url_for('static', filename='staticImages/city2Transparent.png') }}" id="building2" style = "position:fixed; height:145px;">
+      <img src="{{ url_for('static', filename='staticImages/city1Transparent.png') }}" id="building3" style = "position:fixed; height:145px;">
+      <img src="{{ url_for('static', filename='staticImages/city2Transparent.png') }}" id="building4" style = "position:fixed; height:145px;">
+      <img src="{{ url_for('static', filename='staticImages/city1Transparent.png') }}" id="building5" style = "position:fixed; height:145px;">
+      <img src="{{ url_for('static', filename='staticImages/city2Transparent.png') }}" id="building6" style = "position:fixed; height:145px;">
+      <div class = "loginContainer" id ="loginContainer">
+        <h1 id="websiteNameBack">PostPlay</h1> 
+        <h1 id ="websiteNameFront">PostPlay</h1>
+
+        <form id = "submitLogin" method = "post">
+          <input id = "inputUsername" name = "inputUsername" class = "inputContainer" placeholder = "Username">
+          <input id = "inputPassword" name = "inputPassword" class = "inputContainer" placeholder = "Password" type="password">
+          <button type = "button" id ="loginButton">Login</button>
+          <input id = "inputNewUsername" name ="inputNewUsername" class = "inputNewContainer" placeholder = "Create New Username">
+          <input id = "inputNewPassword" name ="inputNewPassword" class = "inputNewContainer" placeholder = "Create New Password" type="password">
+        </form>
+        <button id ="createButton">Create</button>
+        <div id ="splitLine"></div>
+        <p id="newText">Don't have an account?</p>
+        <p id="loginText">Have an account?</p>
+        <button id="signUpButton">Sign Up</button>
+        <button id="loginChangeButton">Login</button>
+        <p id ="text">A new way to connect.</p>
+      </div>
+
+      <!-- <img src = "https://imgtr.ee/images/2023/04/19/00Sfb.png" style="height:50px"> -->
+    </main>
+    <script src="{{url_for('static', filename='JavaScript/loginScreen.js')}}"></script>
+  </body>
+</html>
+
+
+

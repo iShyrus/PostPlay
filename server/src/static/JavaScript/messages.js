@@ -34,6 +34,16 @@ $(document).ready(function(){
         }
       });
     });
+
+    // const chatBox = document.createElement('div');
+    // chatBox.setAttribute("id", "chatBox")
+    // chatBox.classList.add("chatBox");
+    // const lining = document.createElement('div');
+    // lining.classList.add("lining");
+
+    // chatBox.appendChild(lining)
+
+    // messagingBox.appendChild(chatBox)
       
 })
 
@@ -44,23 +54,53 @@ function chatFriendsList(){
     if(chatSwitch === false){
         $("#chatFriendsList").animate({bottom:"20px"});
         chatSwitch = true
+        $("#chatBox").animate({bottom:"510px"});
     }
     else{
         $("#chatFriendsList").animate({bottom:"-160px"});
         chatSwitch = false
+        $("#chatBox").animate({bottom:"0px"});
     }
 }
 
 function clickedFriend(friend){
-
-    const friendMessagingBox = document.createElement('button'); 
+    chatBox = document.getElementById("chatBox")
+    const friendMessagingBox = document.createElement('button');
+    friendMessagingBox.setAttribute("id", friend)
+    friendMessagingBox.setAttribute("onclick", "clickToViewMessages(this.id)")
     friendMessagingBox.classList.add("friendMessagingBox");
-
     const friendBoxName = document.createElement('p');
     friendBoxName.innerText = friend.replace("$message$","");
     friendMessagingBox.appendChild(friendBoxName)
-
-    messagingBox.appendChild(friendMessagingBox)
+    chatBox.appendChild(friendMessagingBox)
 }
 
-//-160 20
+
+function clickToViewMessages(friend){
+    chatBox = document.getElementById("chatBox");
+    document.getElementById("usernameTitle").innerText = friend.replace("$message$", "");
+
+}
+
+function sendMessage(){
+    message = document.getElementById("messageInput").value
+    chatLogsBox = document.getElementById("chatLogsBox")
+    const messages = document.createElement('div'); 
+    messages.classList.add("messages")
+
+    const messageText = document.createElement('p'); 
+    messageText.innerText = message
+    messages.appendChild(messageText)
+    chatLogsBox.appendChild(messages)
+    document.getElementById("messageInput").value = ""
+
+    username = document.getElementById("usernameText").innerText
+
+    $.post("/message", {'username':username, 'message':message}, function(){
+
+    });
+}
+
+
+//-160 20         bottom:510px 0px;
+

@@ -12,7 +12,7 @@
 }
 #friendsMessagingButton{
     position:relative;
-    left:82.8%;
+    left:-0.3%;
     border:none;
     cursor:pointer;  
     height: 28px;
@@ -27,7 +27,7 @@
 }
 #chatFriendsList{
     position: fixed;
-    left: 1284px;
+    left: 620px;
     bottom: -160;
     transform: translateX(-50%);
     width: 136px;
@@ -92,19 +92,78 @@
 }
 .friendMessagingBox {
     position: relative;
-    left:-157px;
-    bottom: 2px;
-    display: inline-block;
+    top: -24px;
+    left:-1px;
     align-items: flex-start;
     justify-content: center;
-    border:1px solid #808080;
     cursor:pointer;
     background-color:white;
     font-family: "Press Start 2P";
     font-size:7px;
     width:160px;
-    top:-4px;
     border: 2px solid #808080;
 
   }
-  
+  .chatBox{
+    position:relative;
+    background-color: white;
+    height:500px;
+    width:520px;
+    bottom:510px;
+    border:2px solid #808080;
+    left:278px;
+    opacity:1;
+  }
+  .lining{
+    position:absolute;
+    background-color: #808080;
+    width:2px;
+    height:600px;
+    left:159px;
+    opacity: 0.5;
+  }
+  #messageInput{
+    position:relative;
+    top:473px;
+    left:165px;
+    width:305px;
+    height:23px;
+    z-index: 2;
+
+  }
+  #usernameTitle{
+    position:absolute;
+    top:5px;
+    left:170px;
+    font-size:10px;
+  }
+  #submitMessage{
+    position:relative;
+    left:150px;
+    top:473px;
+    z-index: 2;
+
+  }
+  #chatLogsBox{
+    position:relative;
+    height:465px;
+    width:359px;
+    background-color: red;
+    top:10px;
+    left:159px;
+    border:2px solid #808080;
+    background-color:white;
+    z-index: 1;
+    overflow:auto
+  }
+  .messages{
+    position:relative;
+    height:25px;
+    width:100px;
+    background-color:red;
+    margin-bottom:1px;
+    left:5px;
+    font-size:8px;
+    display:text;
+    align-items: center;
+  }
