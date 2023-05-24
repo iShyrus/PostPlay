@@ -7,7 +7,7 @@
     height: 25px;
     background-color: #f4f4f4;
     border: 2px solid #808080;
-    z-index: 2;
+    z-index: 1;
     
 }
 #friendsMessagingButton{
@@ -27,7 +27,7 @@
 }
 #chatFriendsList{
     position: fixed;
-    left: 620px;
+    left: 67px;
     bottom: -160;
     transform: translateX(-50%);
     width: 136px;
@@ -36,7 +36,7 @@
     border: 2px solid #808080;
     border-radius: 4px;
     overflow:auto;
-    z-index: 1;
+    z-index: 2;
 
 }
 .friendBox{
@@ -149,7 +149,6 @@
     position:absolute;
     height:465px;
     width:359px;
-    background-color: red;
     top:33px;
     left:159px;
     border:2px solid #808080;
@@ -167,7 +166,7 @@
     font-size:8px;
     display:text;
     align-items: center;
-    border:2px solid #82f5ff;
+    border:3px solid #82f5ff;
     border-radius:10px;
   }
 #globalChatButton{
@@ -182,4 +181,16 @@
   font-size:7px;
   width:160px;
   border: 2px solid #808080;
+}
+.privateChatLogsBox{
+  position:absolute;
+  height:465px;
+  width:359px;
+  top:33px;
+  left:559px;
+  border:2px solid #808080;
+  background-color:white;
+  z-index: 1;
+  overflow:auto;
+  
 }

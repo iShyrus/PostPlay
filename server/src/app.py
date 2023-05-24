@@ -53,6 +53,16 @@ class userPostingInfo(db.Model):
         self.comments = comments
         self.datePosted = datePosted
 
+class chatLobbyDB(db.Model):
+    chatLobbyName = db.Column("chatLobbyName", db.String ,primary_key=True)
+    messages = db.Column("messages", db.String)
+
+
+    def __init__(self, chatLobbyName, messages):
+        self.chatLobbyName = chatLobbyName
+        self.messages = messages
+
+
 
 
 @app.route("/", methods = ['POST',"GET"])
@@ -96,6 +106,7 @@ def dashboard(username):
     allLikesArr = [user.likes for user in userPostingInfo.query.all()]
     allCommentsArr = [user.comments for user in userPostingInfo.query.all()]
     allDatesArr = [user.datePosted for user in userPostingInfo.query.all()]
+
 
 
     if request.method =="POST":
@@ -146,7 +157,13 @@ def dashboard(username):
     allDatesArr = [user.datePosted for user in userPostingInfo.query.all()]
     friendsList = usernameQuery.friends
 
-    return render_template("dashboard.html", username = session.get('username'), allPaths = allPathToPostArr, allDescriptions = allDescriptionArr, allUsernames = allUsernameArr, allLikes = allLikesArr, allComments = allCommentsArr, allDates = allDatesArr, userLikes = usernameQuery.likedPosts, friendsListHTML = friendsList)
+    chatLobbies = [chat.chatLobbyName for chat in chatLobbyDB.query.all()]
+    chatMessages = [chat.messages for chat in chatLobbyDB.query.all()]
+
+    print(chatMessages)
+
+
+    return render_template("dashboard.html", username = session.get('username'), allPaths = allPathToPostArr, allDescriptions = allDescriptionArr, allUsernames = allUsernameArr, allLikes = allLikesArr, allComments = allCommentsArr, allDates = allDatesArr, userLikes = usernameQuery.likedPosts, friendsListHTML = friendsList, chatLobbiesHTML = chatLobbies, chatMessagesHTML = chatMessages)
 
 
 @app.route("/dashboard/<username>/friends", methods=['POST', 'GET'])
@@ -230,17 +247,27 @@ def check():
 
 @app.route("/message",methods = ['POST'])
 def message():
-    mainUsername = session.get('username')
-    print(mainUsername)
 
     name = request.form.get('username')
     message = request.form.get('message')
     chatLobby = request.form.get("chatLobby")
-    print(chatLobby)
+
+    chatLobbyList = chatLobbyDB.query.filter_by(chatLobbyName=chatLobby).first()
+
+    if chatLobbyList:
+        chatLobbyList.messages += name + ": " + message +"-" 
+        db.session.commit()
+
+    else:
+        newChatLobby = chatLobbyDB(chatLobby, name + ": " + message +"-")
+        db.session.add(newChatLobby)
+        db.session.commit()
+
+    # 
+    print(chatLobbyList.messages)
+
     pusher_client.trigger(chatLobby, 'new-message', {'username':name, 'message': message})
 
-    print(name) 
-    print(message)
     return ""
 
 

@@ -5,6 +5,7 @@ $(document).ready(function(){
     friendsList = (document.getElementById("friendsList").innerText).split("-");    
     chatFriendsListBox = document.getElementById("chatFriendsList") 
     messagingBox = document.getElementById("messagingBox") 
+    
 
     //Appending friends list in chat box list
     for (let i = 0; i < friendsList.length-1; i++) {
@@ -35,16 +36,38 @@ $(document).ready(function(){
       });
     });
 
-    // const chatBox = document.createElement('div');
-    // chatBox.setAttribute("id", "chatBox")
-    // chatBox.classList.add("chatBox");
-    // const lining = document.createElement('div');
-    // lining.classList.add("lining");
+    chatLobbiesList = JSON.parse(document.getElementById("chatLobbies").innerText.replaceAll("'",'"'));
+    chatMessagesList = JSON.parse(document.getElementById("chatMessages").innerText.replaceAll("'",'"'));
+    globalIndex = chatLobbiesList.indexOf('global')
+    globalChatMessages = (chatMessagesList[globalIndex].split("-"))
 
-    // chatBox.appendChild(lining)
-
-    // messagingBox.appendChild(chatBox)
+    for (let i = 0; i < globalChatMessages.length-1; i++) {
+        chatLogsBox = document.getElementById("chatLogsBox")
+        const messages = document.createElement('div'); 
+        messages.classList.add("messages");
+        messages.setAttribute("id",chatLobby)
+        const messageText = document.createElement('p'); 
+        messageText.innerText = globalChatMessages[i];
+        messages.appendChild(messageText);
+        chatLogsBox.appendChild(messages);
+    }
       
+
+    chatBox = document.getElementById("chatBox")
+    for (let i = 0; i < chatLobbiesList.length; i++) {
+        if(chatLobbiesList[i] !="global"){
+            const privateChatLogsBox = document.createElement('div');
+            privateChatLogsBox.classList.add("privateChatLogsBox");
+            privateChatLogsBox.setAttribute("id", chatLobbiesList[i])
+            chatBox.appendChild(privateChatLogsBox)
+        }
+    }
+
+
+
+
+
+
 })
 
 
@@ -52,7 +75,7 @@ var chatSwitch = false
 function chatFriendsList(){
     
     if(chatSwitch === false){
-        $("#chatFriendsList").animate({bottom:"20px"});
+        $("#chatFriendsList").animate({bottom:"24px"});
         chatSwitch = true
         $("#chatBox").animate({bottom:"510px"});
     }
@@ -80,96 +103,96 @@ function clickedFriend(friend){
 function clickToViewMessages(friend){
     chatBox = document.getElementById("chatBox");
     document.getElementById("usernameTitle").innerText = friend.replace("$message$", "");
-    // alert(friend)
-
     username = document.getElementById("usernameText").innerText
     arr = [friend.replace("$message$",""), username]
     arr.sort()
-
-    username = document.getElementById("usernameText").innerText
     chatLobby = arr[0]+"-"+arr[1]
-    // alert(chatLobby)
+
+    chatLobbiesList = JSON.parse(document.getElementById("chatLobbies").innerText.replaceAll("'",'"'));
+    chatMessagesList = JSON.parse(document.getElementById("chatMessages").innerText.replaceAll("'",'"'));
+    chatLogIndex = chatLobbiesList.indexOf(chatLobby)
+    privateChatMessages = (chatMessagesList[chatLogIndex].split("-"))
+    chatLogsBox = document.getElementById(chatLobby)
+
+    for (let i = 0; i < privateChatMessages.length-1; i++) {
+        const messages = document.createElement('div'); 
+        messages.classList.add("messages");
+        messages.setAttribute("id",chatLobby)
+        const messageText = document.createElement('p'); 
+        messageText.innerText = privateChatMessages[i];
+        messages.appendChild(messageText);
+        chatLogsBox.appendChild(messages);
+    }
+
+
 }
 
-// count =0
-// function sendMessage(){
-//     message = document.getElementById("messageInput").value
-//     chatLogsBox = document.getElementById("chatLogsBox")
-//     // const messages = document.createElement('div'); 
-//     // messages.classList.add("messages")
-
-//     // const messageText = document.createElement('p'); 
-//     // messageText.innerText = message
-//     // messages.appendChild(messageText)
-//     // chatLogsBox.appendChild(messages)
-    
-//     document.getElementById("messageInput").value = ""
-
-//     username = document.getElementById("usernameText").innerText
-
-//     $.post("/message", {'username':username, 'message':message}, function(){
-//     });
-//     var pusher = new Pusher('8a526bc7ea075b1655a8', {
-//         cluster: 'us3'
-//       });
-
-//       var channel = pusher.subscribe('chat-channel');
-//       channel.bind('new-message', function(data) {
-//         let username = data.username
-//         let message = data.message
-//         // const messages = document.createElement('div'); 
-//         // messages.classList.add("messages")
-//         // const messageText = document.createElement('p'); 
-//         // messageText.innerText = message
-//         // messages.appendChild(messageText)
-//         // chatLogsBox.appendChild(messages)
-//         let message_template = `
-//             <div class = "messages">
-//                 <p>${message}<p>
-//             </div>
-        
-//         `;
-//         $('#chatLogsBox').append(message_template);
-
-//       });
-
-// }
-
-
-
+function globalChatClicked(){
+    chatLobby = 'global'
+    document.getElementById("usernameTitle").innerText = "Global Chat"
+}
 
 
 $(function(){
-
     $('#submitMessage').on('click', function() {
         username = document.getElementById("usernameText").innerText
         message = document.getElementById("messageInput").value
         // alert(chatLobby)
         $.post("/message", {'username':username, 'message':message, "chatLobby": chatLobby}, function(){
         });
-
     })
 
-
-
-
+    friendsList = (document.getElementById("friendsList").innerText).split("-");    
+    username = document.getElementById("usernameText").innerText
     var pusher = new Pusher('8a526bc7ea075b1655a8', {
-    cluster: 'us3'
-    });
-    // alert(chatLobby)
-    var channel = pusher.subscribe(chatLobby);
+        cluster: 'us3'
+        });
+
+
+    for (let i = 0; i < friendsList.length-1; i++) {
+        arr = [friendsList[i], username]
+        arr.sort()
+        chatLobby = (arr[0]+"-"+arr[1])
+
+        var channel = pusher.subscribe(chatLobby);
+        channel.bind('new-message', function(data) {
+            // alert("test")
+            let username = data.username;
+            let message = data.message;
+            chatLogsBox = document.getElementById("chatLogsBox")
+            const messages = document.createElement('div'); 
+            messages.classList.add("messages")
+            messages.setAttribute("id",chatLobby)
+            const messageText = document.createElement('p'); 
+            messageText.innerText = username+": "+ message
+            messages.appendChild(messageText)
+            chatLogsBox.appendChild(messages)
+            document.getElementById("messageInput").value = ""
+        });
+
+    }
+
+    chatLobby ="global"
+
+    var channel = pusher.subscribe('global');
     channel.bind('new-message', function(data) {
-        alert("test")
+        // alert("test")
         let username = data.username;
         let message = data.message;
         chatLogsBox = document.getElementById("chatLogsBox")
         const messages = document.createElement('div'); 
-        messages.classList.add("messages")
+        messages.classList.add("messages");
+        messages.setAttribute("id",chatLobby)
+
         const messageText = document.createElement('p'); 
-        messageText.innerText = username+": "+ message
-        messages.appendChild(messageText)
-        chatLogsBox.appendChild(messages)
-        document.getElementById("messageInput").value = ""
+        messageText.innerText = username+": "+ message;
+        messages.appendChild(messageText);
+        chatLogsBox.appendChild(messages);
+        document.getElementById("messageInput").value = "";
     });
+
+
+
+
     
 })
