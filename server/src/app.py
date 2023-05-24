@@ -230,14 +230,20 @@ def check():
 
 @app.route("/message",methods = ['POST'])
 def message():
+    mainUsername = session.get('username')
+    print(mainUsername)
 
-
-    username = request.form.get('username')
+    name = request.form.get('username')
     message = request.form.get('message')
-    print(username)
-    print(message)
+    chatLobby = request.form.get("chatLobby")
+    print(chatLobby)
+    pusher_client.trigger(chatLobby, 'new-message', {'username':name, 'message': message})
 
-    return ''
+    print(name) 
+    print(message)
+    return ""
+
+
 
 
 

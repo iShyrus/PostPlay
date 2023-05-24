@@ -92,7 +92,7 @@
 }
 .friendMessagingBox {
     position: relative;
-    top: -24px;
+    top: 0px;
     left:-1px;
     align-items: flex-start;
     justify-content: center;
@@ -121,9 +121,10 @@
     height:600px;
     left:159px;
     opacity: 0.5;
+    top:-2px;
   }
   #messageInput{
-    position:relative;
+    position:absolute;
     top:473px;
     left:165px;
     width:305px;
@@ -138,18 +139,18 @@
     font-size:10px;
   }
   #submitMessage{
-    position:relative;
-    left:150px;
+    position:absolute;
+    left:472px;
     top:473px;
     z-index: 2;
 
   }
   #chatLogsBox{
-    position:relative;
+    position:absolute;
     height:465px;
     width:359px;
     background-color: red;
-    top:10px;
+    top:33px;
     left:159px;
     border:2px solid #808080;
     background-color:white;
@@ -160,10 +161,25 @@
     position:relative;
     height:25px;
     width:100px;
-    background-color:red;
-    margin-bottom:1px;
+    background-color:white;
+    margin-bottom:3px;
     left:5px;
     font-size:8px;
     display:text;
     align-items: center;
+    border:2px solid #82f5ff;
+    border-radius:10px;
   }
+#globalChatButton{
+  position: relative;
+  top: 0;
+  left:-1px;
+  align-items: flex-start;
+  justify-content: center;
+  cursor:pointer;
+  background-color:white;
+  font-family: "Press Start 2P";
+  font-size:7px;
+  width:160px;
+  border: 2px solid #808080;
+}

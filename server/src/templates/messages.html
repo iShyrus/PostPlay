@@ -11,7 +11,8 @@
   />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   <script src="{{url_for('static', filename='JavaScript/messages.js')}}"></script>
-  
+  <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+
   
   
   <body>
@@ -23,11 +24,13 @@
                 <img style ="height:10px;" src = "{{ url_for('static', filename='staticImages/online.png') }}">
                 Chat
             </button>
+
             <div id ="chatBox"class="chatBox">
-                <p id = "usernameTitle">Name</p>
+                <p id = "usernameTitle">Global Chat</p>
+                <button id = "globalChatButton">Global Chat</button>
                 <div class="lining"></div>
                 <input id = "messageInput">
-                <button id="submitMessage" onclick ="sendMessage()">Send</button>
+                <button id="submitMessage">Send</button>
                 <div id ="chatLogsBox"></div>
             </div>
 

@@ -45,6 +45,7 @@
     <main>
       <div id ="postingContainer" style = "display:none;">
         <div id = "userPostingBox">
+          <h1 id = "usernameText">{{username}}</h1>
 
           <form method="POST" enctype="multipart/form-data" id = "fileInput">
               <input id = "userPostingText" name = "descriptionText" placeholder="What have you played? (47 Char Limit)" maxlength = "47">
@@ -62,7 +63,6 @@
       </div>
 
       <!-- {% include "menuTemplate.html" %}     -->
-      <h1 style = "display:none;" id = "usernameText">{{username}}</h1>
       {% include "newMenuTemplate.html" %}    
       
 
