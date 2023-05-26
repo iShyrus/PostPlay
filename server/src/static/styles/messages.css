@@ -147,7 +147,7 @@
   }
   #chatLogsBox{
     position:absolute;
-    height:465px;
+    height:435px;
     width:359px;
     top:33px;
     left:159px;
@@ -159,6 +159,19 @@
   .messages{
     position:relative;
     height:25px;
+    width:300px;
+    background-color:white;
+    margin-bottom:3px;
+    left:5px;
+    font-size:8px;
+    display:text;
+    align-items: center;
+    border:3px solid #61007f;
+    border-radius:10px;
+  }
+  .sendersMessages{
+    position:relative;
+    height:25px;
     width:100px;
     background-color:white;
     margin-bottom:3px;
@@ -166,7 +179,7 @@
     font-size:8px;
     display:text;
     align-items: center;
-    border:3px solid #82f5ff;
+    border:3px solid #ff8282;
     border-radius:10px;
   }
 #globalChatButton{
@@ -184,13 +197,13 @@
 }
 .privateChatLogsBox{
   position:absolute;
-  height:465px;
+  height:435px;
   width:359px;
   top:33px;
-  left:559px;
+  left:159px;
   border:2px solid #808080;
   background-color:white;
   z-index: 1;
   overflow:auto;
-  
+  display:none;
 }

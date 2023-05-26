@@ -125,11 +125,37 @@ function clickToViewMessages(friend){
     }
 
 
+
+    // Loop through each element and log their IDs
+    const privateBox = document.querySelectorAll('.privateChatLogsBox');
+
+    // Loop through each element using a for loop
+    for (let i = 0; i < privateBox.length; i++) {
+      const element = privateBox[i];
+      elementID = element.id;
+
+      if(elementID==chatLobby){
+        document.getElementById(elementID).style.display = "block"
+      }
+      else{
+        document.getElementById(elementID).style.display = "none"
+
+      }
+      
+    }
+
+
 }
 
 function globalChatClicked(){
     chatLobby = 'global'
     document.getElementById("usernameTitle").innerText = "Global Chat"
+
+    
+    const privateLogs = document.querySelectorAll('.privateChatLogsBox');
+    privateLogs.forEach(function(privateLogs) {
+        privateLogs.style.display = 'none';
+      });
 }
 
 
@@ -137,9 +163,12 @@ $(function(){
     $('#submitMessage').on('click', function() {
         username = document.getElementById("usernameText").innerText
         message = document.getElementById("messageInput").value
+ 
         // alert(chatLobby)
         $.post("/message", {'username':username, 'message':message, "chatLobby": chatLobby}, function(){
         });
+
+
     })
 
     friendsList = (document.getElementById("friendsList").innerText).split("-");    
@@ -159,7 +188,7 @@ $(function(){
             // alert("test")
             let username = data.username;
             let message = data.message;
-            chatLogsBox = document.getElementById("chatLogsBox")
+            chatLogsBox = document.getElementById(chatLobby)
             const messages = document.createElement('div'); 
             messages.classList.add("messages")
             messages.setAttribute("id",chatLobby)
@@ -168,6 +197,9 @@ $(function(){
             messages.appendChild(messageText)
             chatLogsBox.appendChild(messages)
             document.getElementById("messageInput").value = ""
+            setTimeout(function(){
+                chatLogsBox.scrollTop = chatLogsBox.scrollHeight;
+            },100)
         });
 
     }
@@ -180,7 +212,8 @@ $(function(){
         let username = data.username;
         let message = data.message;
         chatLogsBox = document.getElementById("chatLogsBox")
-        const messages = document.createElement('div'); 
+        const messages = document.createElement('div');
+         
         messages.classList.add("messages");
         messages.setAttribute("id",chatLobby)
 
@@ -189,8 +222,10 @@ $(function(){
         messages.appendChild(messageText);
         chatLogsBox.appendChild(messages);
         document.getElementById("messageInput").value = "";
+        setTimeout(function(){
+            chatLogsBox.scrollTop = chatLogsBox.scrollHeight;
+        },100)
     });
-
 
 
 

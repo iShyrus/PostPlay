@@ -211,6 +211,11 @@ def friends(username):
                 print(userInfoSending.friends)
                 print(userInfoRecieving.friends)
 
+                arr = [user,username]
+                arr.sort()
+                newChatLobby = chatLobbyDB(arr[0]+"-"+arr[1], "")
+                db.session.add(newChatLobby)
+
                 db.session.commit()
 
             if "rejected" in request.form["incomingFriendsList"]:
@@ -258,10 +263,6 @@ def message():
         chatLobbyList.messages += name + ": " + message +"-" 
         db.session.commit()
 
-    else:
-        newChatLobby = chatLobbyDB(chatLobby, name + ": " + message +"-")
-        db.session.add(newChatLobby)
-        db.session.commit()
 
     # 
     print(chatLobbyList.messages)

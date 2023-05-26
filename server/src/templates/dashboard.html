@@ -24,8 +24,8 @@
     <p id = "userLikes" style = "display:none">{{userLikes}}</p>
     <p id = "allComments" style = "display:none">{{allComments}}</p>
     <p id = "allLikes" style = "display:none">{{allLikes}}</p>
-    <p id = "chatLobbies">{{chatLobbiesHTML}}</p>
-    <p id = "chatMessages">{{chatMessagesHTML}}</p>
+    <p id = "chatLobbies" style = "display:none">{{chatLobbiesHTML}}</p>
+    <p id = "chatMessages"style = "display:none">{{chatMessagesHTML}}</p>
 
     <img src="{{ url_for('static', filename='staticImages/moon.png') }}" id = "moon" class = "backgroundImg" style="height:70px;transform: rotate(90deg);display:none;">
     <img src="{{ url_for('static', filename='staticImages/cloud0.png') }}" id="movingCloud0" class = "backgroundImg" style ="position:fixed;height:55px; top:100px; height:80px;">
@@ -47,7 +47,7 @@
     <main>
       <div id ="postingContainer" style = "display:none;">
         <div id = "userPostingBox">
-          <h1 id = "usernameText">{{username}}</h1>
+          <h1 id = "usernameText" style = "display:none">{{username}}</h1>
 
           <form method="POST" enctype="multipart/form-data" id = "fileInput">
               <input id = "userPostingText" name = "descriptionText" placeholder="What have you played? (47 Char Limit)" maxlength = "47">
