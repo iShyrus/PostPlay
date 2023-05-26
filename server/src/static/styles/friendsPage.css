@@ -162,3 +162,13 @@
     left:-5px;
     height:100%;
 }
+#invalid{
+    position:absolute;
+    left:100px;
+    z-index:3;
+    top:39px;
+    left:268px;
+    font-size: 14px;
+    color:#ff6060;
+    display:none;
+}

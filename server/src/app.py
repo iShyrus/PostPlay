@@ -149,6 +149,7 @@ def dashboard(username):
             db.session.add(postSubmit)
             db.session.commit()
 
+    allUsers = [user.username for user in userPostingInfo.query.all()]
     allPathToPostArr = [user.pathToPost for user in userPostingInfo.query.all()]
     allDescriptionArr = [user.description for user in userPostingInfo.query.all()]
     allUsernameArr = [user.username for user in userPostingInfo.query.all()]
@@ -163,7 +164,7 @@ def dashboard(username):
     print(chatMessages)
 
 
-    return render_template("dashboard.html", username = session.get('username'), allPaths = allPathToPostArr, allDescriptions = allDescriptionArr, allUsernames = allUsernameArr, allLikes = allLikesArr, allComments = allCommentsArr, allDates = allDatesArr, userLikes = usernameQuery.likedPosts, friendsListHTML = friendsList, chatLobbiesHTML = chatLobbies, chatMessagesHTML = chatMessages)
+    return render_template("dashboard.html", username = session.get('username'), allPaths = allPathToPostArr, allDescriptions = allDescriptionArr, allUsernames = allUsernameArr, allLikes = allLikesArr, allComments = allCommentsArr, allDates = allDatesArr, userLikes = usernameQuery.likedPosts, friendsListHTML = friendsList, chatLobbiesHTML = chatLobbies, chatMessagesHTML = chatMessages, allUsersHTML = allUsers)
 
 
 @app.route("/dashboard/<username>/friends", methods=['POST', 'GET'])
@@ -225,8 +226,11 @@ def friends(username):
     incomingRequests = usernameQuery.incomingfriendRequests
     sentRequests = usernameQuery.sentFriendRequests
     friendsList = usernameQuery.friends
+    allUsers = [user.username for user in userInformations.query.all()]
+    print(allUsers)
 
-    return render_template("friendsPage.html", username=username, incomingRequestsHTML = incomingRequests, sentRequestsHTML = sentRequests, friendsListHTML = friendsList )
+
+    return render_template("friendsPage.html", username=username, incomingRequestsHTML = incomingRequests, sentRequestsHTML = sentRequests, friendsListHTML = friendsList, allUsersHTML = allUsers)
 
 
 

@@ -19,21 +19,21 @@
   <body>
     <main>
 
-        <p id = "usernameText">{{username}}</p>
+        <p id = "usernameText" style = "display:none">{{username}}</p>
         <p style= "position:relative; left:10px;" id = "incomingRequests">{{incomingRequestsHTML}}</p>
         <p style= "position:relative; left:10px;" id = "sentRequests">{{sentRequestsHTML}}</p>
-        <p id = "friendsList">{{friendsListHTML}}</p>
+        <p id = "friendsList" style = "display:none">{{friendsListHTML}}</p>
+        <p id = "allUsers" >{{allUsersHTML}}</p>
 
         <div id ="postingContainer">
             <img id = "friendsImg" src ="{{ url_for('static', filename='staticImages/whiteFriends.png') }}" style="position:relative; height:40px; top:17px;">
             <h1 class = "friendsMenu">Friends</h1>
-            <button class = "friendsButtons" id = "onlineButton">Online</button>
-            <button class = "friendsButtons" id = "pendingButton">Pending</button>
-            <form method="POST" action="{{ url_for('friends', username=username) }}" name = "sendFrinedRequest">
-            <button type="submit" id ="sendFriendButton">
+            <p id = "invalid">Invalid Username!</p>
+            <form method="POST" action="{{ url_for('friends', username=username) }}" name = "sendFrinedRequest" id = "sendFriendRequestForm">
+              <button type="button" id ="sendFriendButton" onclick = "submitFriendRequest()">
                 <img id = "sendFriendImage" src ="{{ url_for('static', filename='staticImages/sendFriendRequest.png') }}">
-            </button> 
-            <input id ="friendsInput" name = "sendingFriendRequest" placeholder="Add friend's username here." autocomplete="off">
+              </button> 
+              <input type="text" id ="friendsInput" name = "sendingFriendRequest" placeholder="Add friend's username here." autocomplete="off">
             </form>
         </div>
 

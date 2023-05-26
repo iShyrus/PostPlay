@@ -3,6 +3,9 @@ $(document).ready(function(){
     incomingRequests = (document.getElementById("incomingRequests").innerText).split("-");
     sentRequests = (document.getElementById("sentRequests").innerText).split("-");
     friendsList = (document.getElementById("friendsList").innerText).split("-");
+
+
+
     var postingContainer = document.getElementById("postingContainer");
 
 
@@ -101,6 +104,14 @@ $(document).ready(function(){
     form.appendChild(incomingFriendsList);
     postingContainer.appendChild(form);
 
+    var form = document.getElementById("sendFriendRequestForm")
+    $('#friendsInput').keydown(function(event) {
+        if (event.which === 13) {
+          event.preventDefault(); // Prevent form submission
+          submitFriendRequest()
+        }
+      });
+
 })
 
 function acceptRejectButton(statusUsername){
@@ -114,3 +125,22 @@ function acceptRejectButton(statusUsername){
 function messageButton(friendUsername){
     alert(friendUsername)
 }
+
+function submitFriendRequest(){
+    friendInput = document.getElementById("friendsInput").value
+    userList = document.getElementById("allUsers").innerText.replace("[","").replace("]","").replaceAll("'","").replace(" ","").split(",")
+    var form = document.getElementById("sendFriendRequestForm");
+    for (let i = 0; i < userList.length; i++) {
+        if(userList[i].replace(" ","")==friendInput){
+            form.submit()
+        }
+        else{
+            $("#invalid").fadeIn(300);
+        }
+    }
+}
+
+
+
+
+
