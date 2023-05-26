@@ -5,9 +5,6 @@ planeArr = ["/static/staticImages/bluePlaneTransparent.png",
             "/static/staticImages/greenPlaneTransparent.png"
             ]
 
-
-
-
 $(document).ready(function(){
     //Random Starter Airplanes
     pixel = (Math.floor(Math.random() * (290 - 50 + 1)) + 50)
@@ -18,41 +15,8 @@ $(document).ready(function(){
     document.getElementById("airplane1").style.top= pixel1+"px";
 
     //Random Starter Buildings
-    // alert(screen.width)
     var img = new Image();
     img.src = "https://imgtr.ee/images/2023/04/18/0MCrx.png"
-
-
-    // img.onload = function(){
-    //     alert(this.width);
-    //   }
-
-    pixelWidthCount = 0
-    // count = 0
-    // while(pixelWidthCount<screen.width-40){
-    //     randomNumber = Math.floor(Math.random() * (11 - 0 + 1)) + 0
-    //     newBuilding = buildingArr[randomNumber]
-    //     var elem = document.createElement("img");
-    //     elem.setAttribute("src", newBuilding);
-    //     elem.setAttribute("width", "60");
-    //     elem.setAttribute("id","building"+count)
-    //     document.getElementById("webBody").appendChild(elem);
-    //     document.getElementById("building"+count).style.position = "FIXED";
-    //     document.getElementById("building"+count).style.left = pixelWidthCount+"px";
-
-    //     document.getElementById("building"+count).style.top = 500+"px";
-
-
-    //     pixelWidthCount+=50
-    //     count+=1
-
-    //     console.log(pixelWidthCount)
-    //     if (pixelWidthCount>screen.width){
-    //         break;
-    //     }
-
-    // }
-
 
     //Fade Out/In button functions
     setTimeout(function(){
@@ -72,55 +36,81 @@ $(document).ready(function(){
         $("#building4").fadeIn(1500);
         $("#building5").fadeIn(1500);
         $("#building6").fadeIn(1500);
+        $("#memberCount").fadeIn(1500);
+
     },1500)
     
     $("#loginButton").click(function () {
-        $("#newText").animate({fontSize:'0'})
-        $(".inputContainer").animate({fontSize:'0'})
-        $(".inputContainer").animate({height:'0'})
-        $("#loginButton").animate({fontSize:'0'})
-        $("#signUpButton").animate({fontSize:'0'})
-        $("#loginButton").animate({height:'0'})
-        $("#signUpButton").animate({height:'0'})
-        $("#websiteNameBack").animate({fontSize:'0'})
-        $("#websiteNameFront").animate({fontSize:'0'})
-        $("#text").animate({fontSize:'0'})
-        $("#movingCloud0").fadeOut(1500)
-        $("#movingCloud1").fadeOut(1500)
-        $("#movingCloud2").fadeOut(1500)
-        $("#movingCloud3").fadeOut(1500)
-        $("#movingCloud4").fadeOut(1500)
-        $("#movingCloud5").fadeOut(1500)
-        $("#movingCloud6").fadeOut(1500)
-        $("#movingCloud7").fadeOut(1500)
-        $("#movingCloud8").fadeOut(1500)
-        $("#airplane").fadeOut(1500)
-        $("#airplane1").fadeOut(1500)
-        $("#moon").fadeOut(1500)
-        $("#building1").fadeOut(1500)
-        $("#building2").fadeOut(1500)
-        $("#building3").fadeOut(1500)
-        $("#building4").fadeOut(1500)
-        $("#building5").fadeOut(1500)
-        $("#building6").fadeOut(1500)
 
-        setTimeout(function(){
-            $("#loginContainer").animate({height:'0'})
-        },950)
-        setTimeout(function(){
-            $(".inputContainer").fadeOut(500)
-            $(".inputContainer").fadeOut(500)
-            $("#loginButton").fadeOut(500)
-            $("#signUpButton").fadeOut(500)
-            $("#loginButton").fadeOut(500)
-            $("#signUpButton").fadeOut(500)
-            $("#splitLine").fadeOut(500)
-        },950)
-        setTimeout(function(){
-            var form = document.getElementById("submitLogin");
-            form.submit()
-        },2480)
+        // var parsedList = JSON.parse(usernames);
+        usernames = usernames.replaceAll("'",'"')
+        usernamesArr = JSON.parse(usernames)
+        password = password.replaceAll("'",'"')
+        passwordArr = JSON.parse(password)
+        userInput = document.getElementById("inputUsername").value
+        passwordInput = document.getElementById("inputPassword").value
+        for (let i = 0; i < usernamesArr.length; i++) {
+            if(usernamesArr[i] ==userInput && passwordArr[i] ==passwordInput){
+                $("#newText").animate({fontSize:'0'})
+                $(".inputContainer").animate({fontSize:'0'})
+                $(".inputContainer").animate({height:'0'})
+                $("#loginButton").animate({fontSize:'0'})
+                $("#signUpButton").animate({fontSize:'0'})
+                $("#loginButton").animate({height:'0'})
+                $("#signUpButton").animate({height:'0'})
+                $("#websiteNameBack").animate({fontSize:'0'})
+                $("#websiteNameFront").animate({fontSize:'0'})
+                $("#text").animate({fontSize:'0'})
+                $("#movingCloud0").fadeOut(1500)
+                $("#movingCloud1").fadeOut(1500)
+                $("#movingCloud2").fadeOut(1500)
+                $("#movingCloud3").fadeOut(1500)
+                $("#movingCloud4").fadeOut(1500)
+                $("#movingCloud5").fadeOut(1500)
+                $("#movingCloud6").fadeOut(1500)
+                $("#movingCloud7").fadeOut(1500)
+                $("#movingCloud8").fadeOut(1500)
+                $("#airplane").fadeOut(1500)
+                $("#airplane1").fadeOut(1500)
+                $("#moon").fadeOut(1500)
+                $("#building1").fadeOut(1500)
+                $("#building2").fadeOut(1500)
+                $("#building3").fadeOut(1500)
+                $("#building4").fadeOut(1500)
+                $("#building5").fadeOut(1500)
+                $("#building6").fadeOut(1500)
+                $("#invalid").fadeOut(1500)
+                $("#memberCount").fadeOut(1500)
+
+                setTimeout(function(){
+                    $("#loginContainer").animate({height:'0'})
+                },950)
+                setTimeout(function(){
+                    $(".inputContainer").fadeOut(500)
+                    $(".inputContainer").fadeOut(500)
+                    $("#loginButton").fadeOut(500)
+                    $("#signUpButton").fadeOut(500)
+                    $("#loginButton").fadeOut(500)
+                    $("#signUpButton").fadeOut(500)
+                    $("#splitLine").fadeOut(500)
+                },950)
+                setTimeout(function(){
+                    var form = document.getElementById("submitLogin");
+                    form.submit()
+                },2480)
+                break;
+            }
+            if(i ==usernamesArr.length-1){
+                $("#invalid").fadeIn(300)
+                $("#invalid").effect("shake");
+
+            }
+
+        }
+
+
     });
+    
     $("#signUpButton").click(function () {
         $(".inputContainer").animate({fontSize:'0'})
         $(".inputContainer").animate({height:'0'})
@@ -187,28 +177,6 @@ $(document).ready(function(){
         document.getElementById("airplane1").src = planeArr[Math.floor(Math.random() * (4 - 0 + 1)) + 0]
     }, 40000)
 
-
+    //User Count
+    document.getElementById("memberCount").innerText = userCount+" Users have joined!"
 });
-
-
-
-
-
-
-
-///////////////JAVASCRIPT
-
-
-
-// <!-- https://imgtr.ee/images/2023/04/18/0MZ8m.png
-// https://imgtr.ee/images/2023/04/18/0MmrU.png
-// https://imgtr.ee/images/2023/04/18/0MdcB.png
-// https://imgtr.ee/images/2023/04/18/0M69Q.png
-// https://imgtr.ee/images/2023/04/18/0MLQR.png
-// https://imgtr.ee/images/2023/04/18/0MNII.png
-// https://imgtr.ee/images/2023/04/18/0M5Gb.png
-// https://imgtr.ee/images/2023/04/18/0MV17.png
-// https://imgtr.ee/images/2023/04/18/0MWVA.png
-// https://imgtr.ee/images/2023/04/18/0MAP2.png
-// https://imgtr.ee/images/2023/04/18/0M48z.png
-// https://imgtr.ee/images/2023/04/18/0MCrx.png -->
