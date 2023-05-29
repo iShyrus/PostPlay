@@ -257,6 +257,10 @@ def message():
     if chatLobbyList:
         chatLobbyList.messages += name + ": " + message +"-" 
         db.session.commit()
+    else:
+        createChatLobby = chatLobbyDB(chatLobby,name + ": " + message +"-")
+        db.session.add(createChatLobby)
+        db.session.commit()
     pusher_client.trigger(chatLobby, 'new-message', {'username':name, 'message': message})
     return ""
 

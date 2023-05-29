@@ -376,7 +376,7 @@ body {
 }
 #memberCount{
     position:absolute;
-    top: 77.5%;
+    top: 753px;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size:9px;

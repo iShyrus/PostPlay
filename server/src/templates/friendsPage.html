@@ -20,10 +20,10 @@
     <main>
 
         <p id = "usernameText" style = "display:none">{{username}}</p>
-        <p style= "position:relative; left:10px;" id = "incomingRequests">{{incomingRequestsHTML}}</p>
-        <p style= "position:relative; left:10px;" id = "sentRequests">{{sentRequestsHTML}}</p>
+        <p style= "position:relative; left:10px; display:none" id = "incomingRequests">{{incomingRequestsHTML}}</p>
+        <p style= "position:relative; left:10px; display:none" id = "sentRequests">{{sentRequestsHTML}}</p>
         <p id = "friendsList" style = "display:none">{{friendsListHTML}}</p>
-        <p id = "allUsers" >{{allUsersHTML}}</p>
+        <p id = "allUsers" style = "display:none">{{allUsersHTML}}</p>
 
         <div id ="postingContainer">
             <img id = "friendsImg" src ="{{ url_for('static', filename='staticImages/whiteFriends.png') }}" style="position:relative; height:40px; top:17px;">
