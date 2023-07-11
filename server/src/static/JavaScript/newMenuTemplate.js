@@ -1,5 +1,7 @@
 function homeClick(){
-    alert("test")
+    username = (document.getElementById("usernameText").innerText)
+    window.location.href = "/dashboard/"+username;
+
 }
 
 function friendsPage(){

@@ -87,8 +87,8 @@ def index():
             usr = userInformations(newUsernameLogin,newUsernamePassword,"member","","","","")
             db.session.add(usr)
             db.session.commit()
-            return render_template("loginScreen.html")
-        
+            return redirect(url_for('index'))
+
     return render_template("loginScreen.html" , userCountHTML = userCount, usersHTML = users, passwordHTML = usersPassword)
 
 
